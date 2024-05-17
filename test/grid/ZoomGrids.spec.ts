@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { ZoomGrids } from '../../lib/grid/ZoomGrids';
-import { GridType } from '../../lib/grid/GridType';
-import { Grid } from '../../lib/grid/Grid';
+import { ZoomGrids } from '../../lib/grid/ZoomGrids.js';
+import { GridType } from '../../lib/grid/GridType.js';
+import { Grid } from '../../lib/grid/Grid.js';
 
 describe('ZoomGrids Tests', function () {
   it('test precision', function () {

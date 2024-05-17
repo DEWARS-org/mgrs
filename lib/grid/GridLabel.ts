@@ -1,6 +1,7 @@
-import { Bounds, Label, Point } from '@ngageoint/grid-js';
-import { MGRS } from '../MGRS';
-import { GridType } from './GridType';
+import type { Bounds, Point } from '@ngageoint/grid-js';
+import { Label } from '@ngageoint/grid-js';
+import type { MGRS } from '../MGRS.js';
+import type { GridType } from './GridType.js';
 
 /**
  * MGRS Grid Label

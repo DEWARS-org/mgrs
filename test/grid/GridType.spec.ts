@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { GridType } from '../../lib/grid/GridType';
-import { GridTypeUtils } from '../../lib/grid/GridTypeUtils';
+import { GridType } from '../../lib/grid/GridType.js';
+import { GridTypeUtils } from '../../lib/grid/GridTypeUtils.js';
 
 /**
  * Grid Type Test

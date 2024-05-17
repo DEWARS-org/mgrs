@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { GridZones } from '../../lib/gzd/GridZones';
-import { MGRSConstants } from '../../lib/MGRSConstants';
-import { MGRSUtils } from '../../lib/MGRSUtils';
+import { GridZones } from '../../lib/gzd/GridZones.js';
+import { MGRSConstants } from '../../lib/MGRSConstants.js';
+import { MGRSUtils } from '../../lib/MGRSUtils.js';
 
 const BAND_LETTERS = 'CDEFGHJKLMNPQRSTUVWXX';
 

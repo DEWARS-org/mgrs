@@ -1,13 +1,14 @@
-import { Color } from '@ngageoint/color-js';
-import { BaseGrid, Bounds, GridStyle, GridTile, PropertyConstants } from '@ngageoint/grid-js';
-import { IComparable } from 'tstl';
-import { GridLine } from '../features/GridLine';
-import { GridZone } from '../gzd/GridZone';
-import { MGRSProperties } from '../property/MGRSProperties';
-import { GridLabel } from './GridLabel';
-import { GridLabeler } from './GridLabeler';
-import { GridType } from './GridType';
-import { GridTypeUtils } from './GridTypeUtils';
+import type { Color } from '@ngageoint/color-js';
+import type { Bounds, GridStyle, GridTile } from '@ngageoint/grid-js';
+import { BaseGrid, PropertyConstants } from '@ngageoint/grid-js';
+import type { IComparable } from 'tstl';
+import type { GridLine } from '../features/GridLine.js';
+import type { GridZone } from '../gzd/GridZone.js';
+import { MGRSProperties } from '../property/MGRSProperties.js';
+import type { GridLabel } from './GridLabel.js';
+import type { GridLabeler } from './GridLabeler.js';
+import { GridType } from './GridType.js';
+import { GridTypeUtils } from './GridTypeUtils.js';
 
 /**
  * Grid

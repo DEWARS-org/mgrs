@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { ZoneNumberRange } from '../../lib/gzd/ZoneNumberRange';
-import { MGRSConstants } from '../../lib/MGRSConstants';
+import { ZoneNumberRange } from '../../lib/gzd/ZoneNumberRange.js';
+import { MGRSConstants } from '../../lib/MGRSConstants.js';
 
 describe('ZoneNumberRange Tests', function () {
   it('test iterator', function () {

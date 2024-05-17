@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { GridZones } from '../../lib/gzd/GridZones';
-import { BandLetterRange } from '../../lib/gzd/BandLetterRange';
+import { GridZones } from '../../lib/gzd/GridZones.js';
+import { BandLetterRange } from '../../lib/gzd/BandLetterRange.js';
 
 const BAND_LETTERS = 'CDEFGHJKLMNPQRSTUVWXX';
 

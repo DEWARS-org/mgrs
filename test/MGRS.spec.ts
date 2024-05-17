@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import { Point } from '@ngageoint/grid-js';
-import { MGRS } from '../lib/MGRS';
-import { GridType } from '../lib/grid/GridType';
-import { UTM } from '../lib/utm/UTM';
-import { GridRange } from '../lib/gzd/GridRange';
+import { MGRS } from '../lib/MGRS.js';
+import { GridType } from '../lib/grid/GridType.js';
+import { UTM } from '../lib/utm/UTM.js';
+import { GridRange } from '../lib/gzd/GridRange.js';
 
 /**
  * MGRS Test

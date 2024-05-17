@@ -1,6 +1,6 @@
-import { MGRSConstants } from '../MGRSConstants';
-import { MGRSUtils } from '../MGRSUtils';
-import { GridZones } from './GridZones';
+import { MGRSConstants } from '../MGRSConstants.js';
+import { MGRSUtils } from '../MGRSUtils.js';
+import { GridZones } from './GridZones.js';
 
 /**
  * Band Letter Range

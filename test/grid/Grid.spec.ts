@@ -1,7 +1,7 @@
 import { GridStyle } from '@ngageoint/grid-js';
 import { expect } from 'chai';
-import { Grid } from '../../lib/grid/Grid';
-import { GridType } from '../../lib/grid/GridType';
+import { Grid } from '../../lib/grid/Grid.js';
+import { GridType } from '../../lib/grid/GridType.js';
 
 describe('Grid Tests', function () {
   it('test precision', function () {

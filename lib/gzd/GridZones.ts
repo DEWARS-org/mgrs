@@ -1,13 +1,13 @@
-import { Bounds, Point } from '@ngageoint/grid-js';
-import { MGRS } from '../MGRS';
-import { MGRSConstants } from '../MGRSConstants';
-import { MGRSUtils } from '../MGRSUtils';
-import { BandLetterRange } from './BandLetterRange';
-import { GridRange } from './GridRange';
-import { GridZone } from './GridZone';
-import { LatitudeBand } from './LatitudeBand';
-import { LongitudinalStrip } from './LongitudinalStrip';
-import { ZoneNumberRange } from './ZoneNumberRange';
+import type { Bounds, Point } from '@ngageoint/grid-js';
+import type { MGRS } from '../MGRS.js';
+import { MGRSConstants } from '../MGRSConstants.js';
+import { MGRSUtils } from '../MGRSUtils.js';
+import { BandLetterRange } from './BandLetterRange.js';
+import { GridRange } from './GridRange.js';
+import { GridZone } from './GridZone.js';
+import { LatitudeBand } from './LatitudeBand.js';
+import { LongitudinalStrip } from './LongitudinalStrip.js';
+import { ZoneNumberRange } from './ZoneNumberRange.js';
 
 /**
  * Grid Zones, Longitudinal Strips, and Latitude Bands

@@ -1,9 +1,10 @@
 import { Color } from '@ngageoint/color-js';
-import { Bounds, Labeler, PropertyConstants } from '@ngageoint/grid-js';
-import { GridZone } from '../gzd/GridZone';
-import { MGRSProperties } from '../property/MGRSProperties';
-import { GridLabel } from './GridLabel';
-import { GridType } from './GridType';
+import type { Bounds } from '@ngageoint/grid-js';
+import { Labeler, PropertyConstants } from '@ngageoint/grid-js';
+import type { GridZone } from '../gzd/GridZone.js';
+import { MGRSProperties } from '../property/MGRSProperties.js';
+import type { GridLabel } from './GridLabel.js';
+import type { GridType } from './GridType.js';
 
 /**
  * Grid Labeler

@@ -1,4 +1,4 @@
-import { GridType } from './GridType';
+import { GridType } from './GridType.js';
 
 export class GridTypeUtils {
   /**

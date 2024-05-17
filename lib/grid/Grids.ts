@@ -1,13 +1,13 @@
-import { Color } from '@ngageoint/color-js';
+import type { Color } from '@ngageoint/color-js';
 import { BaseGrids, GridStyle, PropertyConstants } from '@ngageoint/grid-js';
-import { GZDLabeler } from '../gzd/GZDLabeler';
-import { MGRSProperties } from '../property/MGRSProperties';
-import { Grid } from './Grid';
-import { GridLabeler } from './GridLabeler';
-import { GridType } from './GridType';
-import { GridTypeUtils } from './GridTypeUtils';
-import { MGRSLabeler } from './MGRSLabeler';
-import { ZoomGrids } from './ZoomGrids';
+import { GZDLabeler } from '../gzd/GZDLabeler.js';
+import { MGRSProperties } from '../property/MGRSProperties.js';
+import { Grid } from './Grid.js';
+import type { GridLabeler } from './GridLabeler.js';
+import { GridType } from './GridType.js';
+import { GridTypeUtils } from './GridTypeUtils.js';
+import { MGRSLabeler } from './MGRSLabeler.js';
+import { ZoomGrids } from './ZoomGrids.js';
 
 /**
  * Grids

@@ -1,5 +1,5 @@
-import { Hemisphere } from '@ngageoint/grid-js';
-import { MGRSUtils } from '../MGRSUtils';
+import type { Hemisphere } from '@ngageoint/grid-js';
+import { MGRSUtils } from '../MGRSUtils.js';
 
 /**
  * Latitude (horizontal) band

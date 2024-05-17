@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { GridRange } from '../../lib/gzd/GridRange';
-import { MGRS } from '../../lib/MGRS';
+import { GridRange } from '../../lib/gzd/GridRange.js';
+import { MGRS } from '../../lib/MGRS.js';
 
 describe('GridRange Tests', function () {
   it('test iterator', function () {

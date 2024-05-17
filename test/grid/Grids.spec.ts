@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { Grids } from '../../lib/grid/Grids';
-import { GridType } from '../../lib/grid/GridType';
+import { Grids } from '../../lib/grid/Grids.js';
+import { GridType } from '../../lib/grid/GridType.js';
 
 describe('Grids Tests', function () {
   it('test construction', function () {

@@ -1,5 +1,5 @@
 import { GridUtils, Hemisphere } from '@ngageoint/grid-js';
-import { MGRSConstants } from './MGRSConstants';
+import { MGRSConstants } from './MGRSConstants.js';
 
 /**
  * Military Grid Reference System utilities

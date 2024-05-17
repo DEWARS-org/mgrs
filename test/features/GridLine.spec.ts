@@ -1,7 +1,7 @@
 import { Line, Point } from '@ngageoint/grid-js';
 import { expect } from 'chai';
-import { GridLine } from '../../lib/features/GridLine';
-import { GridType } from '../../lib/grid/GridType';
+import { GridLine } from '../../lib/features/GridLine.js';
+import { GridType } from '../../lib/grid/GridType.js';
 
 describe('GridLine Tests', function () {
   it('test copy', function () {

@@ -1,11 +1,11 @@
-import { Bounds, Hemisphere, Line, Point } from '@ngageoint/grid-js';
-import { GridLine } from '../features/GridLine';
-import { GridType } from '../grid/GridType';
-import { GridTypeUtils } from '../grid/GridTypeUtils';
-import { MGRSUtils } from '../MGRSUtils';
-import { UTM } from '../utm/UTM';
-import { LatitudeBand } from './LatitudeBand';
-import { LongitudinalStrip } from './LongitudinalStrip';
+import type { Bounds, Hemisphere, Line, Point } from '@ngageoint/grid-js';
+import { GridLine } from '../features/GridLine.js';
+import { GridType } from '../grid/GridType.js';
+import { GridTypeUtils } from '../grid/GridTypeUtils.js';
+import { MGRSUtils } from '../MGRSUtils.js';
+import { UTM } from '../utm/UTM.js';
+import type { LatitudeBand } from './LatitudeBand.js';
+import type { LongitudinalStrip } from './LongitudinalStrip.js';
 
 /**
  * Grid Zone

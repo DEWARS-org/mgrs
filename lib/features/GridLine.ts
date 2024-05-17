@@ -1,5 +1,6 @@
-import { Line, Point } from '@ngageoint/grid-js';
-import { GridType } from '../grid/GridType';
+import type { Point } from '@ngageoint/grid-js';
+import { Line } from '@ngageoint/grid-js';
+import type { GridType } from '../grid/GridType.js';
 
 /**
  * Line between two points

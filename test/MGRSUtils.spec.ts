@@ -1,7 +1,7 @@
 import { Hemisphere } from '@ngageoint/grid-js';
 import { expect } from 'chai';
-import { MGRSConstants } from '../lib/MGRSConstants';
-import { MGRSUtils } from '../lib/MGRSUtils';
+import { MGRSConstants } from '../lib/MGRSConstants.js';
+import { MGRSUtils } from '../lib/MGRSUtils.js';
 
 describe('MGRSUtils Tests', function () {
   it('test validate zone number', function () {

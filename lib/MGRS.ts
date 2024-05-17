@@ -1,11 +1,12 @@
-import { Hemisphere, Line, Point } from '@ngageoint/grid-js';
+import type { Hemisphere, Point } from '@ngageoint/grid-js';
+import { Line } from '@ngageoint/grid-js';
 import { GridType } from './grid/GridType';
 import * as sprintf from 'sprintf-js';
-import { GridTypeUtils } from './grid/GridTypeUtils';
-import { GridZone } from './gzd/GridZone';
-import { UTM } from './utm/UTM';
-import { GridZones } from './gzd/GridZones';
-import { MGRSUtils } from './MGRSUtils';
+import { GridTypeUtils } from './grid/GridTypeUtils.js';
+import type { GridZone } from './gzd/GridZone.js';
+import { UTM } from './utm/UTM.js';
+import { GridZones } from './gzd/GridZones.js';
+import { MGRSUtils } from './MGRSUtils.js';
 
 /**
  * Military Grid Reference System Coordinate

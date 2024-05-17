@@ -1,9 +1,9 @@
 import { GridTile, Point } from '@ngageoint/grid-js';
-import { Grids } from '../lib/grid/Grids';
-import { GridType } from '../lib/grid/GridType';
-import { MGRS } from '../lib/MGRS';
-import { UTM } from '../lib/utm/UTM';
-import { GridZones } from '../lib/gzd/GridZones';
+import { Grids } from '../lib/grid/Grids.js';
+import { GridType } from '../lib/grid/GridType.js';
+import { MGRS } from '../lib/MGRS.js';
+import { UTM } from '../lib/utm/UTM.js';
+import { GridZones } from '../lib/gzd/GridZones.js';
 
 /**
  * README example tests

@@ -1,6 +1,6 @@
 import { Hemisphere, Point } from '@ngageoint/grid-js';
 import { expect } from 'chai';
-import { UTM } from '../../lib/utm/UTM';
+import { UTM } from '../../lib/utm/UTM.js';
 
 describe('UTM Tests', function () {
   it('test to point', function () {

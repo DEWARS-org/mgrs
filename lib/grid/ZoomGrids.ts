@@ -1,6 +1,6 @@
 import { BaseZoomGrids } from '@ngageoint/grid-js';
-import { Grid } from './Grid';
-import { GridType } from './GridType';
+import type { Grid } from './Grid.js';
+import type { GridType } from './GridType.js';
 
 /**
  * Zoom Level Matching Grids

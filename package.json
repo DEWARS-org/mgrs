@@ -37,7 +37,6 @@
         "tstl": "^3.0.0"
     },
     "devDependencies": {
-        "@tsconfig/recommended": "^1.0.1",
         "@types/chai": "^4.3.3",
         "@types/mocha": "10.0.6",
         "@types/sprintf-js": "^1.1.2",

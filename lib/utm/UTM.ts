@@ -155,7 +155,6 @@ export class UTM {
       north -= 10000000.0;
     }
 
-    // @formatter:off
     let latitude =
       ((north / 6366197.724 / 0.9996 +
         (1 +
@@ -584,11 +583,9 @@ export class UTM {
             north / 6366197.724 / 0.9996)) *
         180) /
       Math.PI;
-    // @formatter:on
     latitude = Math.round(latitude * 10000000);
     latitude = latitude / 10000000;
 
-    // @formatter:off
     let longitude =
       (Math.atan(
         (Math.exp(
@@ -703,7 +700,6 @@ export class UTM {
         Math.PI +
       this.zone * 6 -
       183;
-    // @formatter:on
     longitude = Math.round(longitude * 10000000);
     longitude = longitude / 10000000;
 
@@ -818,7 +814,6 @@ export class UTM {
     const latitude = point.getLatitude();
     const longitude = point.getLongitude();
 
-    // @formatter:off
     let easting =
       ((0.5 *
         Math.log(
@@ -866,10 +861,8 @@ export class UTM {
             Math.pow(Math.cos((latitude * Math.PI) / 180), 2)) /
             3) +
       500000;
-    // @formatter:on
     easting = Math.round(easting * 100) * 0.01;
 
-    // @formatter:off
     let northing =
       (((Math.atan(
         Math.tan((latitude * Math.PI) / 180) /
@@ -930,7 +923,6 @@ export class UTM {
                 Math.pow(Math.cos((latitude * Math.PI) / 180), 2) *
                 Math.pow(Math.cos((latitude * Math.PI) / 180), 2))) /
             3);
-    // @formatter:on
 
     if (hemisphere === Hemisphere.SOUTH) {
       northing = northing + 10000000;

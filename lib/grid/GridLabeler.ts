@@ -1,10 +1,10 @@
-import { Color } from '@ngageoint/color-js';
-import type { Bounds } from '@ngageoint/grid-js';
-import { Labeler, PropertyConstants } from '@ngageoint/grid-js';
-import type { GridZone } from '../gzd/GridZone.js';
-import { MGRSProperties } from '../property/MGRSProperties.js';
-import type { GridLabel } from './GridLabel.js';
-import type { GridType } from './GridType.js';
+import { Color } from "@ngageoint/color-js";
+import type { Bounds } from "@ngageoint/grid-js";
+import { Labeler, PropertyConstants } from "@ngageoint/grid-js";
+import type { GridZone } from "../gzd/GridZone.js";
+import { MGRSProperties } from "../property/MGRSProperties.js";
+import type { GridLabel } from "./GridLabel.js";
+import type { GridType } from "./GridType.js";
 
 /**
  * Grid Labeler
@@ -13,20 +13,22 @@ export abstract class GridLabeler extends Labeler {
   /**
    * Default text size
    */
-  public static readonly DEFAULT_TEXT_SIZE = MGRSProperties.getInstance().getDoubleProperty(
-    true,
-    PropertyConstants.LABELER.toString(),
-    PropertyConstants.TEXT_SIZE.toString(),
-  );
+  public static readonly DEFAULT_TEXT_SIZE =
+    MGRSProperties.getInstance().getDoubleProperty(
+      true,
+      PropertyConstants.LABELER.toString(),
+      PropertyConstants.TEXT_SIZE.toString(),
+    );
 
   /**
    * Default buffer size
    */
-  public static readonly DEFAULT_BUFFER = MGRSProperties.getInstance().getDoubleProperty(
-    true,
-    PropertyConstants.LABELER.toString(),
-    PropertyConstants.BUFFER.toString(),
-  );
+  public static readonly DEFAULT_BUFFER =
+    MGRSProperties.getInstance().getDoubleProperty(
+      true,
+      PropertyConstants.LABELER.toString(),
+      PropertyConstants.BUFFER.toString(),
+    );
 
   constructor(
     enabled: boolean,
@@ -50,5 +52,9 @@ export abstract class GridLabeler extends Labeler {
    *            tile bounds
    * @return labels
    */
-  public abstract getLabels(gridType: GridType, zone: GridZone, tileBounds?: Bounds): GridLabel[] | undefined;
+  public abstract getLabels(
+    gridType: GridType,
+    zone: GridZone,
+    tileBounds?: Bounds,
+  ): GridLabel[] | undefined;
 }

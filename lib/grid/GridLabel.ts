@@ -1,7 +1,7 @@
-import type { Bounds, Point } from '@ngageoint/grid-js';
-import { Label } from '@ngageoint/grid-js';
-import type { MGRS } from '../MGRS.js';
-import type { GridType } from './GridType.js';
+import type { Bounds, Point } from "@ngageoint/grid-js";
+import { Label } from "@ngageoint/grid-js";
+import type { MGRS } from "../MGRS.js";
+import type { GridType } from "./GridType.js";
 
 /**
  * MGRS Grid Label
@@ -31,7 +31,13 @@ export class GridLabel extends Label {
    * @param coordinate
    *            MGRS coordinate
    */
-  constructor(name: string, center: Point, bounds: Bounds, gridType: GridType, coordinate: MGRS) {
+  constructor(
+    name: string,
+    center: Point,
+    bounds: Bounds,
+    gridType: GridType,
+    coordinate: MGRS,
+  ) {
     super(name, center, bounds);
     this.gridType = gridType;
     this.coordinate = coordinate;

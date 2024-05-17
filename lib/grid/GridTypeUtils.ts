@@ -1,4 +1,4 @@
-import { GridType } from './GridType.js';
+import { GridType } from "./GridType.js";
 
 export class GridTypeUtils {
   /**
@@ -22,7 +22,10 @@ export class GridTypeUtils {
    */
   public static withAccuracy(accuracy: number): GridType {
     if (accuracy < 0 || accuracy > 5) {
-      throw new Error('Grid Type accuracy digits must be >= 0 and <= 5. accuracy digits: ' + accuracy);
+      throw new Error(
+        "Grid Type accuracy digits must be >= 0 and <= 5. accuracy digits: " +
+          accuracy,
+      );
     }
     return GridTypeUtils.values()[accuracy + 1];
   }
@@ -80,7 +83,7 @@ export class GridTypeUtils {
   }
 
   public static hashCode(type: GridType): number {
-    let h: number = 0;
+    let h = 0;
     const str = type.toString();
     for (let i = 0; i < str.length; i++) {
       h = 31 * h + str.charCodeAt(i);

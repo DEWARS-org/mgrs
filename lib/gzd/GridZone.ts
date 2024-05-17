@@ -1,11 +1,11 @@
-import type { Bounds, Hemisphere, Line, Point } from '@ngageoint/grid-js';
-import { GridLine } from '../features/GridLine.js';
-import { GridType } from '../grid/GridType.js';
-import { GridTypeUtils } from '../grid/GridTypeUtils.js';
-import { MGRSUtils } from '../MGRSUtils.js';
-import { UTM } from '../utm/UTM.js';
-import type { LatitudeBand } from './LatitudeBand.js';
-import type { LongitudinalStrip } from './LongitudinalStrip.js';
+import type { Bounds, Hemisphere, Line, Point } from "@ngageoint/grid-js";
+import { MGRSUtils } from "../MGRSUtils.js";
+import { GridLine } from "../features/GridLine.js";
+import { GridType } from "../grid/GridType.js";
+import { GridTypeUtils } from "../grid/GridTypeUtils.js";
+import { UTM } from "../utm/UTM.js";
+import type { LatitudeBand } from "./LatitudeBand.js";
+import type { LongitudinalStrip } from "./LongitudinalStrip.js";
 
 /**
  * Grid Zone
@@ -37,7 +37,12 @@ export class GridZone {
   constructor(strip: LongitudinalStrip, band: LatitudeBand) {
     this.strip = strip;
     this.band = band;
-    this.bounds = Bounds.degrees(strip.getWest(), band.getSouth(), strip.getEast(), band.getNorth());
+    this.bounds = Bounds.degrees(
+      strip.getWest(),
+      band.getSouth(),
+      strip.getEast(),
+      band.getNorth(),
+    );
   }
 
   /**
@@ -152,7 +157,10 @@ export class GridZone {
    *            grid type
    * @return lines
    */
-  public getLines(tileBounds: Bounds, gridType: GridType): GridLine[] | undefined {
+  public getLines(
+    tileBounds: Bounds,
+    gridType: GridType,
+  ): GridLine[] | undefined {
     let lines: GridLine[] | undefined;
 
     if (gridType === GridType.GZD) {
@@ -173,7 +181,11 @@ export class GridZone {
         const minLon = this.bounds.getMinLongitude();
         const maxLon = this.bounds.getMaxLongitude();
 
-        for (let easting = drawBounds.getMinLongitude(); easting < drawBounds.getMaxLongitude(); easting += precision) {
+        for (
+          let easting = drawBounds.getMinLongitude();
+          easting < drawBounds.getMaxLongitude();
+          easting += precision
+        ) {
           const eastingPrecision = GridTypeUtils.getPrecision(easting);
 
           for (
@@ -183,25 +195,54 @@ export class GridZone {
           ) {
             const northingPrecision = GridTypeUtils.getPrecision(northing);
 
-            let southwest = UTM.point(zoneNumber, hemisphere, easting, northing);
-            const northwest = UTM.point(zoneNumber, hemisphere, easting, northing + precision);
-            let southeast = UTM.point(zoneNumber, hemisphere, easting + precision, northing);
+            let southwest = UTM.point(
+              zoneNumber,
+              hemisphere,
+              easting,
+              northing,
+            );
+            const northwest = UTM.point(
+              zoneNumber,
+              hemisphere,
+              easting,
+              northing + precision,
+            );
+            let southeast = UTM.point(
+              zoneNumber,
+              hemisphere,
+              easting + precision,
+              northing,
+            );
 
             // For points outside the tile grid longitude bounds,
             // get a bound just outside the bounds
             if (precision > 1) {
               if (southwest.getLongitude() < minLon) {
-                southwest = this.getWestBoundsPoint(easting, northing, southwest, southeast);
+                southwest = this.getWestBoundsPoint(
+                  easting,
+                  northing,
+                  southwest,
+                  southeast,
+                );
               } else if (southeast.getLongitude() > maxLon) {
-                southeast = this.getEastBoundsPoint(easting, northing, southwest, southeast);
+                southeast = this.getEastBoundsPoint(
+                  easting,
+                  northing,
+                  southwest,
+                  southeast,
+                );
               }
             }
 
             // Vertical line
-            lines.push(GridLine.lineFromPoints(southwest, northwest, eastingPrecision));
+            lines.push(
+              GridLine.lineFromPoints(southwest, northwest, eastingPrecision),
+            );
 
             // Horizontal line
-            lines.push(GridLine.lineFromPoints(southwest, southeast, northingPrecision));
+            lines.push(
+              GridLine.lineFromPoints(southwest, southeast, northingPrecision),
+            );
           }
         }
       }
@@ -223,7 +264,12 @@ export class GridZone {
    *            east point
    * @return higher precision point
    */
-  private getWestBoundsPoint(easting: number, northing: number, west: Point, east: Point): Point {
+  private getWestBoundsPoint(
+    easting: number,
+    northing: number,
+    west: Point,
+    east: Point,
+  ): Point {
     return this.getBoundsPoint(easting, northing, west, east, false);
   }
 
@@ -240,7 +286,12 @@ export class GridZone {
    *            east point
    * @return higher precision point
    */
-  private getEastBoundsPoint(easting: number, northing: number, west: Point, east: Point): Point {
+  private getEastBoundsPoint(
+    easting: number,
+    northing: number,
+    west: Point,
+    east: Point,
+  ): Point {
     return this.getBoundsPoint(easting, northing, west, east, true);
   }
 
@@ -260,7 +311,13 @@ export class GridZone {
    *            western bounds
    * @return higher precision point
    */
-  private getBoundsPoint(easting: number, northing: number, west: Point, east: Point, eastern: boolean): Point {
+  private getBoundsPoint(
+    easting: number,
+    northing: number,
+    west: Point,
+    east: Point,
+    eastern: boolean,
+  ): Point {
     const line = Line.line(west, east);
 
     let boundsLine: Line;
@@ -279,8 +336,8 @@ export class GridZone {
     let boundsEasting = easting;
     if (intersection) {
       // Intersection easting
-      const intersectionUTM = UTM.from(intersection, zoneNumber, hemisphere);
-      const intersectionEasting = intersectionUTM.getEasting();
+      const intersectionUtm = UTM.from(intersection, zoneNumber, hemisphere);
+      const intersectionEasting = intersectionUtm.getEasting();
       boundsEasting = intersectionEasting - easting;
     }
 
@@ -292,7 +349,12 @@ export class GridZone {
     }
 
     // Higher precision point just outside of the bounds
-    const boundsPoint = UTM.point(zoneNumber, hemisphere, easting + boundsEasting, northing);
+    const boundsPoint = UTM.point(
+      zoneNumber,
+      hemisphere,
+      easting + boundsEasting,
+      northing,
+    );
 
     return boundsPoint;
   }
@@ -306,7 +368,10 @@ export class GridZone {
    *            grid type
    * @return draw bounds or null
    */
-  public getDrawBounds(tileBounds: Bounds, gridType: GridType): Bounds | undefined {
+  public getDrawBounds(
+    tileBounds: Bounds,
+    gridType: GridType,
+  ): Bounds | undefined {
     let drawBounds: Bounds | undefined;
 
     tileBounds = tileBounds.toDegrees().overlap(this.bounds) as Bounds;
@@ -315,22 +380,55 @@ export class GridZone {
       const zoneNumber = this.getNumber();
       const hemisphere = this.getHemisphere();
 
-      const upperLeftUTM = UTM.from(tileBounds.getNorthwest(), zoneNumber, hemisphere);
-      const lowerLeftUTM = UTM.from(tileBounds.getSouthwest(), zoneNumber, hemisphere);
-      const lowerRightUTM = UTM.from(tileBounds.getSoutheast(), zoneNumber, hemisphere);
-      const upperRightUTM = UTM.from(tileBounds.getNortheast(), zoneNumber, hemisphere);
+      const upperLeftUtm = UTM.from(
+        tileBounds.getNorthwest(),
+        zoneNumber,
+        hemisphere,
+      );
+      const lowerLeftUtm = UTM.from(
+        tileBounds.getSouthwest(),
+        zoneNumber,
+        hemisphere,
+      );
+      const lowerRightUtm = UTM.from(
+        tileBounds.getSoutheast(),
+        zoneNumber,
+        hemisphere,
+      );
+      const upperRightUtm = UTM.from(
+        tileBounds.getNortheast(),
+        zoneNumber,
+        hemisphere,
+      );
 
       const precision = gridType;
       const leftEasting =
-        Math.floor(Math.min(upperLeftUTM.getEasting(), lowerLeftUTM.getEasting()) / precision) * precision;
+        Math.floor(
+          Math.min(upperLeftUtm.getEasting(), lowerLeftUtm.getEasting()) /
+            precision,
+        ) * precision;
       const lowerNorthing =
-        Math.floor(Math.min(lowerLeftUTM.getNorthing(), lowerRightUTM.getNorthing()) / precision) * precision;
+        Math.floor(
+          Math.min(lowerLeftUtm.getNorthing(), lowerRightUtm.getNorthing()) /
+            precision,
+        ) * precision;
       const rightEasting =
-        Math.ceil(Math.max(lowerRightUTM.getEasting(), upperRightUTM.getEasting()) / precision) * precision;
+        Math.ceil(
+          Math.max(lowerRightUtm.getEasting(), upperRightUtm.getEasting()) /
+            precision,
+        ) * precision;
       const upperNorthing =
-        Math.ceil(Math.max(upperRightUTM.getNorthing(), upperLeftUTM.getNorthing()) / precision) * precision;
+        Math.ceil(
+          Math.max(upperRightUtm.getNorthing(), upperLeftUtm.getNorthing()) /
+            precision,
+        ) * precision;
 
-      drawBounds = Bounds.meters(leftEasting, lowerNorthing, rightEasting, upperNorthing);
+      drawBounds = Bounds.meters(
+        leftEasting,
+        lowerNorthing,
+        rightEasting,
+        upperNorthing,
+      );
     }
 
     return drawBounds;

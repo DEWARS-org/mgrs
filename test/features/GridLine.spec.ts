@@ -1,10 +1,10 @@
-import { Line, Point } from '@ngageoint/grid-js';
-import { expect } from 'chai';
-import { GridLine } from '../../lib/features/GridLine.js';
-import { GridType } from '../../lib/grid/GridType.js';
+import { Point } from "@ngageoint/grid-js";
+import { expect } from "chai";
+import { GridLine } from "../../lib/features/GridLine.js";
+import { GridType } from "../../lib/grid/GridType.js";
 
-describe('GridLine Tests', function () {
-  it('test copy', function () {
+describe("GridLine Tests", () => {
+  it("test copy", () => {
     const point1 = Point.point(0, 0);
     const point2 = Point.point(1, 1);
     const gridLine = new GridLine(GridLine.line(point1, point2));
@@ -16,11 +16,15 @@ describe('GridLine Tests', function () {
     expect(gridLineCopy.equals(gridLine)).to.be.true;
   });
 
-  it('test create from line', function () {
+  it("test create from line", () => {
     const point1 = Point.point(0, 0);
     const point2 = Point.point(1, 1);
     const gridType = GridType.KILOMETER;
-    const gridLine = GridLine.lineFromPoints(point1, point2, GridType.KILOMETER);
+    const gridLine = GridLine.lineFromPoints(
+      point1,
+      point2,
+      GridType.KILOMETER,
+    );
     expect(gridLine.numPoints()).to.equal(2);
     expect(gridLine.getGridType()).to.equal(gridType);
   });

@@ -1,17 +1,17 @@
-import { expect } from 'chai';
-import { GridType } from '../../lib/grid/GridType.js';
-import { GridTypeUtils } from '../../lib/grid/GridTypeUtils.js';
+import { expect } from "chai";
+import { GridType } from "../../lib/grid/GridType.js";
+import { GridTypeUtils } from "../../lib/grid/GridTypeUtils.js";
 
 /**
  * Grid Type Test
  *
  *
  */
-describe('GridType Tests', function () {
+describe("GridType Tests", () => {
   /**
    * Test precisions
    */
-  it('test precisions', function () {
+  it("test precisions", () => {
     expect(GridType.GZD).to.equal(0);
     expect(GridType.HUNDRED_KILOMETER).to.equal(100000);
     expect(GridType.TEN_KILOMETER).to.equal(10000);
@@ -24,7 +24,7 @@ describe('GridType Tests', function () {
   /**
    * Test digit accuracies
    */
-  it('test accuracies', function () {
+  it("test accuracies", () => {
     expect(GridTypeUtils.getAccuracy(GridType.GZD)).to.equal(0);
 
     expect(GridTypeUtils.withAccuracy(0)).to.equal(GridType.HUNDRED_KILOMETER);

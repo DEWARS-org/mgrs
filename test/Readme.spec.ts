@@ -1,36 +1,36 @@
-import { GridTile, Point } from '@ngageoint/grid-js';
-import { Grids } from '../lib/grid/Grids.js';
-import { GridType } from '../lib/grid/GridType.js';
-import { MGRS } from '../lib/MGRS.js';
-import { UTM } from '../lib/utm/UTM.js';
-import { GridZones } from '../lib/gzd/GridZones.js';
+import { GridTile, Point } from "@ngageoint/grid-js";
+import { MGRS } from "../lib/MGRS.js";
+import { GridType } from "../lib/grid/GridType.js";
+import { Grids } from "../lib/grid/Grids.js";
+import { GridZones } from "../lib/gzd/GridZones.js";
+import { UTM } from "../lib/utm/UTM.js";
 
 /**
  * README example tests
  *
  *
  */
-describe('Readme Tests', function () {
+describe("Readme Tests", () => {
   /**
    * Test MGRS coordinates
    *
    */
-  it('test coordinates', function () {
-    const mgrs = MGRS.parse('33XVG74594359');
+  it("test coordinates", () => {
+    const mgrs = MGRS.parse("33XVG74594359");
     const point = mgrs.toPoint();
     const pointMeters = point.toMeters();
     const utm = mgrs.toUTM();
     const utmCoordinate = utm.toString();
     const point2 = utm.toPoint();
 
-    const mgrs2 = MGRS.parse('33X VG 74596 43594');
+    const mgrs2 = MGRS.parse("33X VG 74596 43594");
 
     const latitude = 63.98862388;
     const longitude = 29.06755082;
     const point3 = Point.point(longitude, latitude);
     const mgrs3 = MGRS.from(point3);
     const mgrsCoordinate = mgrs3.toString();
-    const mgrsGZD = mgrs3.coordinate(GridType.GZD);
+    const mgrsGzd = mgrs3.coordinate(GridType.GZD);
     const mgrs100k = mgrs3.coordinate(GridType.HUNDRED_KILOMETER);
     const mgrs10k = mgrs3.coordinate(GridType.TEN_KILOMETER);
     const mgrs1k = mgrs3.coordinate(GridType.KILOMETER);
@@ -41,7 +41,7 @@ describe('Readme Tests', function () {
     const utm2 = UTM.from(point3);
     const mgrs4 = utm2.toMGRS();
 
-    const utm3 = UTM.parse('18 N 585628 4511322');
+    const utm3 = UTM.parse("18 N 585628 4511322");
     const mgrs5 = utm3.toMGRS();
   });
 
@@ -51,7 +51,7 @@ describe('Readme Tests', function () {
    * @param tile
    *            grid tile
    */
-  it('test draw tile', function () {
+  it("test draw tile", () => {
     testDrawTile(GridTile.tile(512, 512, 8, 12, 5));
   });
 });

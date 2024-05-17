@@ -1,14 +1,14 @@
-import type { Color } from '@ngageoint/color-js';
-import type { Bounds, GridStyle, GridTile } from '@ngageoint/grid-js';
-import { BaseGrid, PropertyConstants } from '@ngageoint/grid-js';
-import type { IComparable } from 'tstl';
-import type { GridLine } from '../features/GridLine.js';
-import type { GridZone } from '../gzd/GridZone.js';
-import { MGRSProperties } from '../property/MGRSProperties.js';
-import type { GridLabel } from './GridLabel.js';
-import type { GridLabeler } from './GridLabeler.js';
-import { GridType } from './GridType.js';
-import { GridTypeUtils } from './GridTypeUtils.js';
+import type { Color } from "@ngageoint/color-js";
+import type { Bounds, GridStyle, GridTile } from "@ngageoint/grid-js";
+import { BaseGrid, PropertyConstants } from "@ngageoint/grid-js";
+import type { IComparable } from "tstl";
+import type { GridLine } from "../features/GridLine.js";
+import type { GridZone } from "../gzd/GridZone.js";
+import { MGRSProperties } from "../property/MGRSProperties.js";
+import type { GridLabel } from "./GridLabel.js";
+import type { GridLabeler } from "./GridLabeler.js";
+import { GridType } from "./GridType.js";
+import { GridTypeUtils } from "./GridTypeUtils.js";
 
 /**
  * Grid
@@ -17,11 +17,12 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
   /**
    * Default line width
    */
-  public static readonly DEFAULT_WIDTH = MGRSProperties.getInstance().getDoubleProperty(
-    true,
-    PropertyConstants.GRID.toString(),
-    PropertyConstants.WIDTH.toString(),
-  );
+  public static readonly DEFAULT_WIDTH =
+    MGRSProperties.getInstance().getDoubleProperty(
+      true,
+      PropertyConstants.GRID.toString(),
+      PropertyConstants.WIDTH.toString(),
+    );
 
   /**
    * Grid type
@@ -126,9 +127,9 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
 
     if (gridType < this.getPrecision()) {
       throw new Error(
-        'Grid can not define a style for a higher precision grid type. Type: ' +
+        "Grid can not define a style for a higher precision grid type. Type: " +
           this.type +
-          ', Style Type: ' +
+          ", Style Type: " +
           gridType,
       );
     }
@@ -245,7 +246,10 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
    *            grid zone
    * @return lines
    */
-  public getLinesFromGridTile(tile: GridTile, zone: GridZone): GridLine[] | undefined {
+  public getLinesFromGridTile(
+    tile: GridTile,
+    zone: GridZone,
+  ): GridLine[] | undefined {
     return this.getLines(tile.getZoom(), zone, tile.getBounds());
   }
 
@@ -260,7 +264,11 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
    *            grid zone
    * @return lines
    */
-  public getLines(zoom: number, zone: GridZone, tileBounds?: Bounds): GridLine[] | undefined {
+  public getLines(
+    zoom: number,
+    zone: GridZone,
+    tileBounds?: Bounds,
+  ): GridLine[] | undefined {
     let lines: GridLine[] | undefined;
     if (tileBounds && this.isLinesWithin(zoom)) {
       lines = this.getLinesFromBounds(tileBounds, zone);
@@ -277,7 +285,10 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
    *            grid zone
    * @return lines
    */
-  public getLinesFromBounds(tileBounds: Bounds, zone: GridZone): GridLine[] | undefined {
+  public getLinesFromBounds(
+    tileBounds: Bounds,
+    zone: GridZone,
+  ): GridLine[] | undefined {
     return zone.getLines(tileBounds, this.type);
   }
 
@@ -290,7 +301,10 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
    *            grid zone
    * @return labels
    */
-  public getLabelsFromGridTile(tile: GridTile, zone: GridZone): GridLabel[] | undefined {
+  public getLabelsFromGridTile(
+    tile: GridTile,
+    zone: GridZone,
+  ): GridLabel[] | undefined {
     return this.getLabels(tile.getZoom(), zone, tile.getBounds());
   }
 
@@ -305,7 +319,11 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
    *            grid zone
    * @return labels
    */
-  public getLabels(zoom: number, zone: GridZone, tileBounds?: Bounds): GridLabel[] | undefined {
+  public getLabels(
+    zoom: number,
+    zone: GridZone,
+    tileBounds?: Bounds,
+  ): GridLabel[] | undefined {
     let labels: GridLabel[] | undefined;
     if (this.isLabelerWithin(zoom)) {
       labels = this.getLabeler().getLabels(this.type, zone, tileBounds);
@@ -336,7 +354,8 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
   public hashCode(): number {
     const prime = 31;
     let result = 1;
-    result = prime * result + (!this.type ? 0 : GridTypeUtils.hashCode(this.type));
+    result =
+      prime * result + (this.type ? GridTypeUtils.hashCode(this.type) : 0);
     return result;
   }
 

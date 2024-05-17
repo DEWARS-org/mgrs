@@ -1,23 +1,23 @@
-import { GridStyle } from '@ngageoint/grid-js';
-import { expect } from 'chai';
-import { Grid } from '../../lib/grid/Grid.js';
-import { GridType } from '../../lib/grid/GridType.js';
+import { GridStyle } from "@ngageoint/grid-js";
+import { expect } from "chai";
+import { Grid } from "../../lib/grid/Grid.js";
+import { GridType } from "../../lib/grid/GridType.js";
 
-describe('Grid Tests', function () {
-  it('test precision', function () {
+describe("Grid Tests", () => {
+  it("test precision", () => {
     const grid = new Grid(GridType.METER);
     expect(grid.getPrecision()).to.equal(GridType.METER);
   });
 
-  it('test style', function () {
+  it("test style", () => {
     const grid = new Grid(GridType.KILOMETER);
 
-    expect(function () {
+    expect(() => {
       grid.setStyle(new GridStyle(undefined, 0), GridType.METER);
     }).to.throw(Error);
   });
 
-  it('test compare', function () {
+  it("test compare", () => {
     const grid = new Grid(GridType.METER);
     let grid2 = new Grid(GridType.METER);
     expect(grid.equals(grid2)).to.be.true;
@@ -31,7 +31,7 @@ describe('Grid Tests', function () {
     expect(grid3.less(grid)).to.be.false;
   });
 
-  it('test type', function () {
+  it("test type", () => {
     const grid = new Grid(GridType.GZD);
     expect(grid.isType(GridType.GZD)).to.be.true;
     expect(grid.isType(GridType.METER)).to.be.false;

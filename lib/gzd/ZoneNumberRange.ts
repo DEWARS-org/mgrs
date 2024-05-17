@@ -1,5 +1,5 @@
-import { MGRSConstants } from '../MGRSConstants.js';
-import { GridZones } from './GridZones.js';
+import { MGRSConstants } from "../MGRSConstants.js";
+import { GridZones } from "./GridZones.js";
 
 /**
  * Zone Number Range
@@ -28,7 +28,10 @@ export class ZoneNumberRange implements IterableIterator<number> {
    * @param east
    *            eastern zone number
    */
-  constructor(west = MGRSConstants.MIN_ZONE_NUMBER, east = MGRSConstants.MAX_ZONE_NUMBER) {
+  constructor(
+    west = MGRSConstants.MIN_ZONE_NUMBER,
+    east = MGRSConstants.MAX_ZONE_NUMBER,
+  ) {
     this.west = west;
     this.east = east;
     this.zoneNumber = west;

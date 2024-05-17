@@ -1,6 +1,6 @@
-import type { Point } from '@ngageoint/grid-js';
-import { Line } from '@ngageoint/grid-js';
-import type { GridType } from '../grid/GridType.js';
+import type { Point } from "@ngageoint/grid-js";
+import { Line } from "@ngageoint/grid-js";
+import type { GridType } from "../grid/GridType.js";
 
 /**
  * Line between two points
@@ -22,7 +22,11 @@ export class GridLine extends Line {
    *            line grid type (optional)
    * @return line
    */
-  public static lineFromPoints(point1: Point, point2: Point, gridType?: GridType): GridLine {
+  public static lineFromPoints(
+    point1: Point,
+    point2: Point,
+    gridType?: GridType,
+  ): GridLine {
     const gridLine = new GridLine(Line.line(point1, point2));
     gridLine.gridType = gridType;
     return gridLine;

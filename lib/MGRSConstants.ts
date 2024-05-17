@@ -1,4 +1,4 @@
-import { GridConstants } from '@ngageoint/grid-js';
+import { GridConstants } from "@ngageoint/grid-js";
 
 /**
  * Military Grid Reference System Constants
@@ -42,12 +42,12 @@ export class MGRSConstants {
   /**
    * Minimum grid band letter
    */
-  public static readonly MIN_BAND_LETTER = 'C';
+  public static readonly MIN_BAND_LETTER = "C";
 
   /**
    * Maximum grid band letter
    */
-  public static readonly MAX_BAND_LETTER = 'X';
+  public static readonly MAX_BAND_LETTER = "X";
 
   /**
    * Number of bands
@@ -67,12 +67,12 @@ export class MGRSConstants {
   /**
    * Last southern hemisphere band letter
    */
-  public static readonly BAND_LETTER_SOUTH = 'M';
+  public static readonly BAND_LETTER_SOUTH = "M";
 
   /**
    * First northern hemisphere band letter
    */
-  public static readonly BAND_LETTER_NORTH = 'N';
+  public static readonly BAND_LETTER_NORTH = "N";
 
   /**
    * Min zone number in Svalbard grid zones
@@ -102,5 +102,5 @@ export class MGRSConstants {
   /**
    * Band letter in Norway grid zones
    */
-  public static readonly NORWAY_BAND_LETTER = 'V';
+  public static readonly NORWAY_BAND_LETTER = "V";
 }

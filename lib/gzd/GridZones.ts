@@ -1,13 +1,13 @@
-import type { Bounds, Point } from '@ngageoint/grid-js';
-import type { MGRS } from '../MGRS.js';
-import { MGRSConstants } from '../MGRSConstants.js';
-import { MGRSUtils } from '../MGRSUtils.js';
-import { BandLetterRange } from './BandLetterRange.js';
-import { GridRange } from './GridRange.js';
-import { GridZone } from './GridZone.js';
-import { LatitudeBand } from './LatitudeBand.js';
-import { LongitudinalStrip } from './LongitudinalStrip.js';
-import { ZoneNumberRange } from './ZoneNumberRange.js';
+import type { Bounds, Point } from "@ngageoint/grid-js";
+import type { MGRS } from "../MGRS.js";
+import { MGRSConstants } from "../MGRSConstants.js";
+import { MGRSUtils } from "../MGRSUtils.js";
+import { BandLetterRange } from "./BandLetterRange.js";
+import { GridRange } from "./GridRange.js";
+import { GridZone } from "./GridZone.js";
+import { LatitudeBand } from "./LatitudeBand.js";
+import { LongitudinalStrip } from "./LongitudinalStrip.js";
+import { ZoneNumberRange } from "./ZoneNumberRange.js";
 
 /**
  * Grid Zones, Longitudinal Strips, and Latitude Bands
@@ -32,8 +32,13 @@ export class GridZones {
     // Create longitudinal strips
     const numberRange = new ZoneNumberRange();
     for (const zoneNumber of numberRange) {
-      const longitude = MGRSConstants.MIN_LON + (zoneNumber - 1) * MGRSConstants.ZONE_WIDTH;
-      const strip = new LongitudinalStrip(zoneNumber, longitude, longitude + MGRSConstants.ZONE_WIDTH);
+      const longitude =
+        MGRSConstants.MIN_LON + (zoneNumber - 1) * MGRSConstants.ZONE_WIDTH;
+      const strip = new LongitudinalStrip(
+        zoneNumber,
+        longitude,
+        longitude + MGRSConstants.ZONE_WIDTH,
+      );
       this.strips.set(strip.getNumber(), strip);
     }
 
@@ -221,7 +226,10 @@ export class GridZones {
    *            eastern longitude in degrees
    * @return zone number range
    */
-  public static getZoneNumberRange(west: number, east: number): ZoneNumberRange {
+  public static getZoneNumberRange(
+    west: number,
+    east: number,
+  ): ZoneNumberRange {
     const westZone = this.getZoneNumberFromLongitude(west, false);
     const eastZone = this.getZoneNumberFromLongitude(east, true);
     return new ZoneNumberRange(westZone, eastZone);
@@ -273,14 +281,23 @@ export class GridZones {
    *            true for eastern number on edges, false for western
    * @return zone number
    */
-  public static getZoneNumberFromLongitude(longitude: number, eastern = true): number {
+  public static getZoneNumberFromLongitude(
+    longitude: number,
+    eastern = true,
+  ): number {
     // Normalize the longitude if needed
-    if (longitude < MGRSConstants.MIN_LON || longitude > MGRSConstants.MAX_LON) {
-      longitude = ((longitude - MGRSConstants.MIN_LON) % (2 * MGRSConstants.MAX_LON)) + MGRSConstants.MIN_LON;
+    if (
+      longitude < MGRSConstants.MIN_LON ||
+      longitude > MGRSConstants.MAX_LON
+    ) {
+      longitude =
+        ((longitude - MGRSConstants.MIN_LON) % (2 * MGRSConstants.MAX_LON)) +
+        MGRSConstants.MIN_LON;
     }
 
     // Determine the zone
-    const zoneValue = (longitude - MGRSConstants.MIN_LON) / MGRSConstants.ZONE_WIDTH;
+    const zoneValue =
+      (longitude - MGRSConstants.MIN_LON) / MGRSConstants.ZONE_WIDTH;
     let zoneNumber = 1 + ~~zoneValue;
 
     // Handle western edge cases and 180.0
@@ -317,7 +334,10 @@ export class GridZones {
    *            northern latitude in degrees
    * @return band letter range
    */
-  public static getBandLetterRange(south: number, north: number): BandLetterRange {
+  public static getBandLetterRange(
+    south: number,
+    north: number,
+  ): BandLetterRange {
     const southLetter = this.getBandLetterFromLatitude(south, false);
     const northLetter = this.getBandLetterFromLatitude(north, true);
     return new BandLetterRange(southLetter, northLetter);
@@ -333,7 +353,10 @@ export class GridZones {
    *            true for northern band on edges, false for southern
    * @return band letter
    */
-  public static getBandLetterFromLatitude(latitude: number, northern = true): string {
+  public static getBandLetterFromLatitude(
+    latitude: number,
+    northern = true,
+  ): string {
     // Bound the latitude if needed
     if (latitude < MGRSConstants.MIN_LAT) {
       latitude = MGRSConstants.MIN_LAT;
@@ -341,7 +364,8 @@ export class GridZones {
       latitude = MGRSConstants.MAX_LAT;
     }
 
-    const bandValue = (latitude - MGRSConstants.MIN_LAT) / MGRSConstants.BAND_HEIGHT;
+    const bandValue =
+      (latitude - MGRSConstants.MIN_LAT) / MGRSConstants.BAND_HEIGHT;
     let bands = ~~bandValue;
 
     // Handle 80.0 to 84.0 and southern edge cases
@@ -397,7 +421,10 @@ export class GridZones {
    * @return true if a Svalbard GZD
    */
   public static isSvalbardZone(zoneNumber: number): boolean {
-    return zoneNumber >= MGRSConstants.MIN_SVALBARD_ZONE_NUMBER && zoneNumber <= MGRSConstants.MAX_SVALBARD_ZONE_NUMBER;
+    return (
+      zoneNumber >= MGRSConstants.MIN_SVALBARD_ZONE_NUMBER &&
+      zoneNumber <= MGRSConstants.MAX_SVALBARD_ZONE_NUMBER
+    );
   }
 
   /**
@@ -407,7 +434,9 @@ export class GridZones {
    *            longitudinal strip
    * @return Svalbard strip or null for empty strips
    */
-  private static getSvalbardStrip(strip: LongitudinalStrip): LongitudinalStrip | undefined {
+  private static getSvalbardStrip(
+    strip: LongitudinalStrip,
+  ): LongitudinalStrip | undefined {
     let svalbardStrip: LongitudinalStrip | undefined;
 
     const stripNumber = strip.getNumber();
@@ -435,9 +464,12 @@ export class GridZones {
    * @return zone number
    */
   private static getSvalbardZone(longitude: number): number {
-    const minimumLongitude = this.getWestLongitude(MGRSConstants.MIN_SVALBARD_ZONE_NUMBER);
+    const minimumLongitude = this.getWestLongitude(
+      MGRSConstants.MIN_SVALBARD_ZONE_NUMBER,
+    );
     const zoneValue =
-      MGRSConstants.MIN_SVALBARD_ZONE_NUMBER + (longitude - minimumLongitude) / MGRSConstants.ZONE_WIDTH;
+      MGRSConstants.MIN_SVALBARD_ZONE_NUMBER +
+      (longitude - minimumLongitude) / MGRSConstants.ZONE_WIDTH;
     let zone = ~~Math.round(zoneValue);
     if (zone % 2 === 0) {
       zone--;
@@ -477,7 +509,10 @@ export class GridZones {
    * @return true if a Norway GZD zone number
    */
   private static isNorwayZone(zoneNumber: number): boolean {
-    return zoneNumber >= MGRSConstants.MIN_NORWAY_ZONE_NUMBER && zoneNumber <= MGRSConstants.MAX_NORWAY_ZONE_NUMBER;
+    return (
+      zoneNumber >= MGRSConstants.MIN_NORWAY_ZONE_NUMBER &&
+      zoneNumber <= MGRSConstants.MAX_NORWAY_ZONE_NUMBER
+    );
   }
 
   /**
@@ -512,7 +547,9 @@ export class GridZones {
    * @return zone number
    */
   private static getNorwayZone(longitude: number): number {
-    const minimumLongitude = this.getWestLongitude(MGRSConstants.MIN_NORWAY_ZONE_NUMBER);
+    const minimumLongitude = this.getWestLongitude(
+      MGRSConstants.MIN_NORWAY_ZONE_NUMBER,
+    );
     let zone = MGRSConstants.MIN_NORWAY_ZONE_NUMBER;
     if (longitude >= minimumLongitude + MGRSConstants.ZONE_WIDTH / 2.0) {
       zone++;

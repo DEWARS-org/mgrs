@@ -1,5 +1,5 @@
-import { GridProperties } from '@ngageoint/grid-js';
-import * as config from '../../resources/mgrs.json';
+import { GridProperties } from "@ngageoint/grid-js";
+import * as config from "../../resources/mgrs.json";
 
 /**
  * MGRS property loader

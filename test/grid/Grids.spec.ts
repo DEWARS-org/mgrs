@@ -1,9 +1,9 @@
-import { expect } from 'chai';
-import { Grids } from '../../lib/grid/Grids.js';
-import { GridType } from '../../lib/grid/GridType.js';
+import { expect } from "chai";
+import { GridType } from "../../lib/grid/GridType.js";
+import { Grids } from "../../lib/grid/Grids.js";
 
-describe('Grids Tests', function () {
-  it('test construction', function () {
+describe("Grids Tests", () => {
+  it("test construction", () => {
     const defaultGrids = new Grids();
     for (const grid of defaultGrids.grids()) {
       expect(grid.isEnabled()).to.equal(true);

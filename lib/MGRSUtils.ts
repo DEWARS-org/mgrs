@@ -1,5 +1,5 @@
-import { GridUtils, Hemisphere } from '@ngageoint/grid-js';
-import { MGRSConstants } from './MGRSConstants.js';
+import { GridUtils, Hemisphere } from "@ngageoint/grid-js";
+import { MGRSConstants } from "./MGRSConstants.js";
 
 /**
  * Military Grid Reference System utilities
@@ -12,13 +12,16 @@ export class MGRSUtils {
    *            zone number
    */
   public static validateZoneNumber(zoneNumber: number): void {
-    if (zoneNumber < MGRSConstants.MIN_ZONE_NUMBER || zoneNumber > MGRSConstants.MAX_ZONE_NUMBER) {
+    if (
+      zoneNumber < MGRSConstants.MIN_ZONE_NUMBER ||
+      zoneNumber > MGRSConstants.MAX_ZONE_NUMBER
+    ) {
       throw new Error(
-        'Illegal zone number (expected ' +
+        "Illegal zone number (expected " +
           MGRSConstants.MIN_ZONE_NUMBER +
-          ' - ' +
+          " - " +
           MGRSConstants.MAX_ZONE_NUMBER +
-          '): ' +
+          "): " +
           zoneNumber,
       );
     }
@@ -36,7 +39,7 @@ export class MGRSUtils {
       letter.charCodeAt(0) > MGRSConstants.MAX_BAND_LETTER.charCodeAt(0) ||
       GridUtils.isOmittedBandLetter(letter)
     ) {
-      throw new Error('Illegal band letter (CDEFGHJKLMNPQRSTUVWX): ' + letter);
+      throw new Error("Illegal band letter (CDEFGHJKLMNPQRSTUVWX): " + letter);
     }
   }
 
@@ -100,6 +103,8 @@ export class MGRSUtils {
    * @return hemisphere
    */
   public static getHemisphere(bandLetter: string): Hemisphere {
-    return bandLetter < MGRSConstants.BAND_LETTER_NORTH ? Hemisphere.SOUTH : Hemisphere.NORTH;
+    return bandLetter < MGRSConstants.BAND_LETTER_NORTH
+      ? Hemisphere.SOUTH
+      : Hemisphere.NORTH;
   }
 }

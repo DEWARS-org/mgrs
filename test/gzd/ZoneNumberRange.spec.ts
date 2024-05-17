@@ -1,9 +1,9 @@
-import { expect } from 'chai';
-import { ZoneNumberRange } from '../../lib/gzd/ZoneNumberRange.js';
-import { MGRSConstants } from '../../lib/MGRSConstants.js';
+import { expect } from "chai";
+import { MGRSConstants } from "../../lib/MGRSConstants.js";
+import { ZoneNumberRange } from "../../lib/gzd/ZoneNumberRange.js";
 
-describe('ZoneNumberRange Tests', function () {
-  it('test iterator', function () {
+describe("ZoneNumberRange Tests", () => {
+  it("test iterator", () => {
     const range = new ZoneNumberRange();
 
     let count = 0;

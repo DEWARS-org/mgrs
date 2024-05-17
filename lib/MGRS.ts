@@ -1,12 +1,12 @@
-import type { Hemisphere, Point } from '@ngageoint/grid-js';
-import { Line } from '@ngageoint/grid-js';
-import { GridType } from './grid/GridType';
-import * as sprintf from 'sprintf-js';
-import { GridTypeUtils } from './grid/GridTypeUtils.js';
-import type { GridZone } from './gzd/GridZone.js';
-import { UTM } from './utm/UTM.js';
-import { GridZones } from './gzd/GridZones.js';
-import { MGRSUtils } from './MGRSUtils.js';
+import type { Hemisphere, Point } from "@ngageoint/grid-js";
+import { Line } from "@ngageoint/grid-js";
+import * as sprintf from "sprintf-js";
+import { MGRSUtils } from "./MGRSUtils.js";
+import { GridType } from "./grid/GridType";
+import { GridTypeUtils } from "./grid/GridTypeUtils.js";
+import type { GridZone } from "./gzd/GridZone.js";
+import { GridZones } from "./gzd/GridZones.js";
+import { UTM } from "./utm/UTM.js";
 
 /**
  * Military Grid Reference System Coordinate
@@ -15,25 +15,26 @@ export class MGRS {
   /**
    * 100km grid square column (‘e’) letters repeat every third zone
    */
-  private static readonly columnLetters = ['ABCDEFGH', 'JKLMNPQR', 'STUVWXYZ'];
+  private static readonly columnLetters = ["ABCDEFGH", "JKLMNPQR", "STUVWXYZ"];
 
   /**
    * 100km grid square row (‘n’) letters repeat every other zone
    */
-  private static readonly rowLetters = ['ABCDEFGHJKLMNPQRSTUV', 'FGHJKLMNPQRSTUVABCDE'];
+  private static readonly rowLetters = [
+    "ABCDEFGHJKLMNPQRSTUV",
+    "FGHJKLMNPQRSTUVABCDE",
+  ];
 
   /**
    * MGRS string pattern
    */
-  private static readonly mgrsPattern = new RegExp(
-    '^(\\d{1,2})([C-HJ-NP-X])(?:([A-HJ-NP-Z][A-HJ-NP-V])((\\d{2}){0,5}))?$',
-    'i',
-  );
+  private static readonly mgrsPattern =
+    /^(\d{1,2})([C-HJ-NP-X])(?:([A-HJ-NP-Z][A-HJ-NP-V])((\d{2}){0,5}))?$/i;
 
   /**
    * MGRS invalid string pattern (Svalbard)
    */
-  private static readonly mgrsInvalidPattern = new RegExp('^3[246]X.*$', 'i');
+  private static readonly mgrsInvalidPattern = /^3[246]X.*$/i;
 
   /**
    * Zone number
@@ -112,7 +113,14 @@ export class MGRS {
    * @param northing
    *            northing
    */
-  constructor(zone: number, band: string, column: string, row: string, easting: number, northing: number) {
+  constructor(
+    zone: number,
+    band: string,
+    column: string,
+    row: string,
+    easting: number,
+    northing: number,
+  ) {
     this.zone = zone;
     this.band = band;
     this.column = column;
@@ -192,7 +200,7 @@ export class MGRS {
    * @return MGRS coordinate
    */
   public coordinate(type?: GridType): string {
-    let mgrs = '';
+    let mgrs = "";
 
     if (type === null || type === undefined) {
       type = GridType.METER;
@@ -225,8 +233,8 @@ export class MGRS {
     const accuracy = 5 - ~~Math.log10(type);
 
     // TODO apply locale
-    const easting = sprintf.sprintf('%05d', this.easting);
-    const northing = sprintf.sprintf('%05d', this.northing);
+    const easting = sprintf.sprintf("%05d", this.easting);
+    const northing = sprintf.sprintf("%05d", this.northing);
 
     return easting.substring(0, accuracy) + northing.substring(0, accuracy);
   }
@@ -262,7 +270,10 @@ export class MGRS {
     let accuracy = 5;
 
     for (let accuracyLevel = 10; accuracyLevel <= 100000; accuracyLevel *= 10) {
-      if (this.easting % accuracyLevel !== 0 || this.northing % accuracyLevel !== 0) {
+      if (
+        this.easting % accuracyLevel !== 0 ||
+        this.northing % accuracyLevel !== 0
+      ) {
         break;
       }
       accuracy--;
@@ -386,7 +397,7 @@ export class MGRS {
    * @return value without spaces
    */
   private static removeSpaces(value: string): string {
-    return value.replace(/\s/g, '');
+    return value.replace(/\s/g, "");
   }
 
   /**
@@ -411,7 +422,14 @@ export class MGRS {
     const easting = ~~(utm.getEasting() % 100000);
     const northing = ~~(utm.getNorthing() % 100000);
 
-    return MGRS.create(utm.getZone(), bandLetter, easting, northing, columnLetter, rowLetter);
+    return MGRS.create(
+      utm.getZone(),
+      bandLetter,
+      easting,
+      northing,
+      columnLetter,
+      rowLetter,
+    );
   }
 
   /**
@@ -425,7 +443,7 @@ export class MGRS {
    */
   public static parse(mgrs: string): MGRS {
     if (!MGRS.mgrsPattern.test(MGRS.removeSpaces(mgrs))) {
-      throw new Error('Invalid MGRS: ' + mgrs);
+      throw new Error("Invalid MGRS: " + mgrs);
     }
 
     const matches = MGRS.removeSpaces(mgrs).match(MGRS.mgrsPattern);
@@ -435,7 +453,7 @@ export class MGRS {
 
     const gridZone = GridZones.getGridZone(zone, band);
     if (gridZone == null) {
-      throw new Error('Invalid MGRS: ' + mgrs);
+      throw new Error("Invalid MGRS: " + mgrs);
     }
 
     let mgrsValue: MGRS | undefined;
@@ -478,18 +496,45 @@ export class MGRS {
               row,
             ).toPoint();
             if (gridBounds.containsPoint(northeast)) {
-              mgrsValue = MGRS.from(Point.degrees(gridSouthwest.getLongitude(), gridSouthwest.getLatitude()));
+              mgrsValue = MGRS.from(
+                Point.degrees(
+                  gridSouthwest.getLongitude(),
+                  gridSouthwest.getLatitude(),
+                ),
+              );
             }
           } else if (westBounds) {
-            const east = MGRS.create(zone, band, GridType.HUNDRED_KILOMETER, northing, column, row).toPoint();
+            const east = MGRS.create(
+              zone,
+              band,
+              GridType.HUNDRED_KILOMETER,
+              northing,
+              column,
+              row,
+            ).toPoint();
             if (gridBounds.containsPoint(east)) {
-              const intersection = MGRS.getWesternBoundsPoint(gridZone, point, east);
+              const intersection = MGRS.getWesternBoundsPoint(
+                gridZone,
+                point,
+                east,
+              );
               mgrsValue = MGRS.from(intersection);
             }
           } else if (southBounds) {
-            const north = MGRS.create(zone, band, easting, GridType.HUNDRED_KILOMETER, column, row).toPoint();
+            const north = MGRS.create(
+              zone,
+              band,
+              easting,
+              GridType.HUNDRED_KILOMETER,
+              column,
+              row,
+            ).toPoint();
             if (gridBounds.containsPoint(north)) {
-              const intersection = MGRS.getSouthernBoundsPoint(gridZone, point, north);
+              const intersection = MGRS.getSouthernBoundsPoint(
+                gridZone,
+                point,
+                north,
+              );
               mgrsValue = MGRS.from(intersection);
             }
           }
@@ -514,9 +559,13 @@ export class MGRS {
    *            eastern point
    * @return western grid bounds point
    */
-  private static getWesternBoundsPoint(gridZone: GridZone, west: Point, east: Point): Point {
-    const eastUTM = UTM.from(east);
-    const northing = eastUTM.getNorthing();
+  private static getWesternBoundsPoint(
+    gridZone: GridZone,
+    west: Point,
+    east: Point,
+  ): Point {
+    const eastUtm = UTM.from(east);
+    const northing = eastUtm.getNorthing();
 
     const zoneNumber = gridZone.getNumber();
     const hemisphere = gridZone.getHemisphere();
@@ -527,14 +576,19 @@ export class MGRS {
     const intersection = line.intersection(boundsLine);
 
     // Intersection easting
-    const intersectionUTM = UTM.from(intersection!, zoneNumber, hemisphere);
-    const intersectionEasting = intersectionUTM.getEasting();
+    const intersectionUtm = UTM.from(intersection!, zoneNumber, hemisphere);
+    const intersectionEasting = intersectionUtm.getEasting();
 
     // One meter precision just inside the bounds
     const boundsEasting = Math.ceil(intersectionEasting);
 
     // Higher precision point just inside of the bounds
-    const boundsPoint = UTM.point(zoneNumber, hemisphere, boundsEasting, northing);
+    const boundsPoint = UTM.point(
+      zoneNumber,
+      hemisphere,
+      boundsEasting,
+      northing,
+    );
 
     boundsPoint.setLongitude(boundsLine.getPoint1().getLongitude());
 
@@ -553,9 +607,13 @@ export class MGRS {
    *            northern point
    * @return southern grid bounds point
    */
-  private static getSouthernBoundsPoint(gridZone: GridZone, south: Point, north: Point): Point {
-    const northUTM = UTM.from(north);
-    const easting = northUTM.getEasting();
+  private static getSouthernBoundsPoint(
+    gridZone: GridZone,
+    south: Point,
+    north: Point,
+  ): Point {
+    const northUtm = UTM.from(north);
+    const easting = northUtm.getEasting();
 
     const zoneNumber = gridZone.getNumber();
     const hemisphere = gridZone.getHemisphere();
@@ -566,14 +624,19 @@ export class MGRS {
     const intersection = line.intersection(boundsLine);
 
     // Intersection northing
-    const intersectionUTM = UTM.from(intersection!, zoneNumber, hemisphere);
-    const intersectionNorthing = intersectionUTM.getNorthing();
+    const intersectionUtm = UTM.from(intersection!, zoneNumber, hemisphere);
+    const intersectionNorthing = intersectionUtm.getNorthing();
 
     // One meter precision just inside the bounds
     const boundsNorthing = Math.ceil(intersectionNorthing);
 
     // Higher precision point just inside of the bounds
-    const boundsPoint = UTM.point(zoneNumber, hemisphere, easting, boundsNorthing);
+    const boundsPoint = UTM.point(
+      zoneNumber,
+      hemisphere,
+      easting,
+      boundsNorthing,
+    );
 
     boundsPoint.setLatitude(boundsLine.getPoint1().getLatitude());
 
@@ -591,7 +654,7 @@ export class MGRS {
    */
   public static precision(mgrs: string): GridType {
     if (!MGRS.mgrsPattern.test(MGRS.removeSpaces(mgrs))) {
-      throw new Error('Invalid MGRS: ' + mgrs);
+      throw new Error("Invalid MGRS: " + mgrs);
     }
 
     const matches = MGRS.removeSpaces(mgrs).match(MGRS.mgrsPattern);
@@ -637,7 +700,11 @@ export class MGRS {
    *            zone number
    * @return the two letter column and row 100k designator
    */
-  public static getColumnRowId(easting: number, northing: number, zoneNumber: number): string {
+  public static getColumnRowId(
+    easting: number,
+    northing: number,
+    zoneNumber: number,
+  ): string {
     const columnLetter = MGRS.getColumnLetter(zoneNumber, easting);
 
     const rowLetter = MGRS.getRowLetter(zoneNumber, northing);

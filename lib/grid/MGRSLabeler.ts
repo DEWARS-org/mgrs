@@ -1,24 +1,35 @@
-import type { Color } from '@ngageoint/color-js';
-import { Bounds } from '@ngageoint/grid-js';
-import type { GridZone } from '../gzd/GridZone.js';
-import { MGRS } from '../MGRS.js';
-import { UTM } from '../utm/UTM.js';
-import { GridLabel } from './GridLabel.js';
-import { GridLabeler } from './GridLabeler.js';
-import { GridType } from './GridType.js';
+import type { Color } from "@ngageoint/color-js";
+import { Bounds } from "@ngageoint/grid-js";
+import { MGRS } from "../MGRS.js";
+import type { GridZone } from "../gzd/GridZone.js";
+import { UTM } from "../utm/UTM.js";
+import { GridLabel } from "./GridLabel.js";
+import { GridLabeler } from "./GridLabeler.js";
+import { GridType } from "./GridType.js";
 
 /**
  * MGRS grid labeler
  */
 export class MGRSLabeler extends GridLabeler {
-  constructor(enabled: boolean, minZoom = 0, maxZoom?: number, color?: Color, textSize?: number, buffer?: number) {
+  constructor(
+    enabled: boolean,
+    minZoom = 0,
+    maxZoom?: number,
+    color?: Color,
+    textSize?: number,
+    buffer?: number,
+  ) {
     super(enabled, minZoom, maxZoom, color, textSize, buffer);
   }
 
   /**
    * {@inheritDoc}
    */
-  public getLabels(gridType: GridType, zone: GridZone, tileBounds?: Bounds): GridLabel[] | undefined {
+  public getLabels(
+    gridType: GridType,
+    zone: GridZone,
+    tileBounds?: Bounds,
+  ): GridLabel[] | undefined {
     let labels: GridLabel[] | undefined;
 
     if (tileBounds) {
@@ -62,7 +73,12 @@ export class MGRSLabeler extends GridLabeler {
    *            northing
    * @return labels
    */
-  private getLabel(gridType: GridType, zone: GridZone, easting: number, northing: number): GridLabel | undefined {
+  private getLabel(
+    gridType: GridType,
+    zone: GridZone,
+    easting: number,
+    northing: number,
+  ): GridLabel | undefined {
     let label: GridLabel | undefined;
 
     const precision = gridType;
@@ -70,23 +86,55 @@ export class MGRSLabeler extends GridLabeler {
     const zoneNumber = zone.getNumber();
     const hemisphere = zone.getHemisphere();
 
-    const northwest = UTM.point(zoneNumber, hemisphere, easting, northing + precision);
+    const northwest = UTM.point(
+      zoneNumber,
+      hemisphere,
+      easting,
+      northing + precision,
+    );
     const southwest = UTM.point(zoneNumber, hemisphere, easting, northing);
-    const southeast = UTM.point(zoneNumber, hemisphere, easting + precision, northing);
-    const northeast = UTM.point(zoneNumber, hemisphere, easting + precision, northing + precision);
+    const southeast = UTM.point(
+      zoneNumber,
+      hemisphere,
+      easting + precision,
+      northing,
+    );
+    const northeast = UTM.point(
+      zoneNumber,
+      hemisphere,
+      easting + precision,
+      northing + precision,
+    );
 
-    let minLatitude = Math.max(southwest.getLatitude(), southeast.getLatitude());
+    let minLatitude = Math.max(
+      southwest.getLatitude(),
+      southeast.getLatitude(),
+    );
     minLatitude = Math.max(minLatitude, bounds.getMinLatitude());
-    let maxLatitude = Math.min(northwest.getLatitude(), northeast.getLatitude());
+    let maxLatitude = Math.min(
+      northwest.getLatitude(),
+      northeast.getLatitude(),
+    );
     maxLatitude = Math.min(maxLatitude, bounds.getMaxLatitude());
 
-    let minLongitude = Math.max(southwest.getLongitude(), northwest.getLongitude());
+    let minLongitude = Math.max(
+      southwest.getLongitude(),
+      northwest.getLongitude(),
+    );
     minLongitude = Math.max(minLongitude, bounds.getMinLongitude());
-    let maxLongitude = Math.min(southeast.getLongitude(), northeast.getLongitude());
+    let maxLongitude = Math.min(
+      southeast.getLongitude(),
+      northeast.getLongitude(),
+    );
     maxLongitude = Math.min(maxLongitude, bounds.getMaxLongitude());
 
     if (minLongitude <= maxLongitude && minLatitude <= maxLatitude) {
-      const labelBounds = Bounds.degrees(minLongitude, minLatitude, maxLongitude, maxLatitude);
+      const labelBounds = Bounds.degrees(
+        minLongitude,
+        minLatitude,
+        maxLongitude,
+        maxLatitude,
+      );
       const center = labelBounds.getCentroid();
 
       const mgrs = MGRS.from(center);

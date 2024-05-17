@@ -1,9 +1,9 @@
-import { Bounds } from '@ngageoint/grid-js';
-import { MGRSUtils } from '../MGRSUtils.js';
-import { BandLetterRange } from './BandLetterRange.js';
-import type { GridZone } from './GridZone.js';
-import { GridZones } from './GridZones.js';
-import { ZoneNumberRange } from './ZoneNumberRange.js';
+import { Bounds } from "@ngageoint/grid-js";
+import { MGRSUtils } from "../MGRSUtils.js";
+import { BandLetterRange } from "./BandLetterRange.js";
+import type { GridZone } from "./GridZone.js";
+import { GridZones } from "./GridZones.js";
+import { ZoneNumberRange } from "./ZoneNumberRange.js";
 
 /**
  * Grid Range
@@ -67,7 +67,10 @@ export class GridRange implements IterableIterator<GridZone> {
    * @param bandLetterRange
    *            band letter range
    */
-  constructor(zoneNumberRange = new ZoneNumberRange(), bandLetterRange = new BandLetterRange()) {
+  constructor(
+    zoneNumberRange = new ZoneNumberRange(),
+    bandLetterRange = new BandLetterRange(),
+  ) {
     this.zoneNumberRange = zoneNumberRange;
     this.bandLetterRange = bandLetterRange;
 
@@ -136,37 +139,53 @@ export class GridRange implements IterableIterator<GridZone> {
       this.gridZone = GridZones.getGridZone(this.zoneNumber, this.bandLetter);
 
       // Handle special case grid gaps (Svalbard)
-      if (!this.gridZone) {
-        // Retrieve the western grid if on the left edge
-        if (this.zoneNumber === this.minZoneNumber) {
-          this.additional.push(GridZones.getGridZone(this.zoneNumber - 1, this.bandLetter));
-        }
-
-        // Expand to the eastern grid if on the right edge
-        if (this.zoneNumber === this.maxZoneNumber) {
-          this.additional.push(GridZones.getGridZone(this.zoneNumber + 1, this.bandLetter));
-        }
-      } else {
+      if (this.gridZone) {
         // Handle special case grid zone expansions (Norway)
         const expand = this.gridZone.getStripExpand();
         if (expand !== 0) {
           if (expand > 0) {
-            for (let expandZone = this.zoneNumber + expand; expandZone > this.zoneNumber; expandZone--) {
+            for (
+              let expandZone = this.zoneNumber + expand;
+              expandZone > this.zoneNumber;
+              expandZone--
+            ) {
               if (expandZone > this.maxZoneNumber) {
-                this.additional.push(GridZones.getGridZone(expandZone, this.bandLetter));
+                this.additional.push(
+                  GridZones.getGridZone(expandZone, this.bandLetter),
+                );
               } else {
                 break;
               }
             }
           } else {
-            for (let expandZone = this.zoneNumber + expand; expandZone < this.zoneNumber; expandZone++) {
+            for (
+              let expandZone = this.zoneNumber + expand;
+              expandZone < this.zoneNumber;
+              expandZone++
+            ) {
               if (expandZone < this.minZoneNumber) {
-                this.additional.push(GridZones.getGridZone(expandZone, this.bandLetter));
+                this.additional.push(
+                  GridZones.getGridZone(expandZone, this.bandLetter),
+                );
               } else {
                 break;
               }
             }
           }
+        }
+      } else {
+        // Retrieve the western grid if on the left edge
+        if (this.zoneNumber === this.minZoneNumber) {
+          this.additional.push(
+            GridZones.getGridZone(this.zoneNumber - 1, this.bandLetter),
+          );
+        }
+
+        // Expand to the eastern grid if on the right edge
+        if (this.zoneNumber === this.maxZoneNumber) {
+          this.additional.push(
+            GridZones.getGridZone(this.zoneNumber + 1, this.bandLetter),
+          );
         }
       }
 

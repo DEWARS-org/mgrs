@@ -3,6 +3,7 @@
     "version": "1.1.0",
     "displayName": "MGRS Javascript",
     "description": "MGRS Javascript",
+    "type": "module",
     "keywords": [
         "NGA",
         "MGRS"

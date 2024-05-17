@@ -2,7 +2,7 @@ import type { Hemisphere } from "@ngageoint/grid-js";
 import { Line, Point } from "@ngageoint/grid-js";
 import * as sprintf from "sprintf-js";
 import { MGRSUtils } from "./MGRSUtils.js";
-import { GridType } from "./grid/GridType";
+import { GridType } from "./grid/GridType.js";
 import { GridTypeUtils } from "./grid/GridTypeUtils.js";
 import type { GridZone } from "./gzd/GridZone.js";
 import { GridZones } from "./gzd/GridZones.js";

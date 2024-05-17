@@ -1,4 +1,5 @@
-import type { Bounds, Hemisphere, Line, Point } from "@ngageoint/grid-js";
+import type { Hemisphere, Point } from "@ngageoint/grid-js";
+import { Bounds, Line } from "@ngageoint/grid-js";
 import { MGRSUtils } from "../MGRSUtils.js";
 import { GridLine } from "../features/GridLine.js";
 import { GridType } from "../grid/GridType.js";

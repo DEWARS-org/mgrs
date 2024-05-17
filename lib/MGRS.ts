@@ -1,5 +1,5 @@
-import type { Hemisphere, Point } from "@ngageoint/grid-js";
-import { Line } from "@ngageoint/grid-js";
+import type { Hemisphere } from "@ngageoint/grid-js";
+import { Line, Point } from "@ngageoint/grid-js";
 import * as sprintf from "sprintf-js";
 import { MGRSUtils } from "./MGRSUtils.js";
 import { GridType } from "./grid/GridType";

@@ -1,6 +1,6 @@
 import type { Color } from "@ngageoint/color-js";
-import type { Bounds, GridStyle, GridTile } from "@ngageoint/grid-js";
-import { BaseGrid, PropertyConstants } from "@ngageoint/grid-js";
+import type { Bounds, GridTile } from "@ngageoint/grid-js";
+import { BaseGrid, GridStyle, PropertyConstants } from "@ngageoint/grid-js";
 import type { IComparable } from "tstl";
 import type { GridLine } from "../features/GridLine.js";
 import type { GridZone } from "../gzd/GridZone.js";

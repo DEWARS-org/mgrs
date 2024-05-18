@@ -101,12 +101,11 @@ export class ZoneNumberRange implements IterableIterator<number> {
         done: false,
         value: currentZoneNumber,
       };
-    } else {
-      return {
-        done: true,
-        value: null,
-      };
     }
+    return {
+      done: true,
+      value: null,
+    };
   }
 
   public reset(): void {

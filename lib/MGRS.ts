@@ -443,7 +443,7 @@ export class MGRS {
    */
   public static parse(mgrs: string): MGRS {
     if (!MGRS.mgrsPattern.test(MGRS.removeSpaces(mgrs))) {
-      throw new Error("Invalid MGRS: " + mgrs);
+      throw new Error(`Invalid MGRS: ${mgrs}`);
     }
 
     const matches = MGRS.removeSpaces(mgrs).match(MGRS.mgrsPattern);
@@ -453,7 +453,7 @@ export class MGRS {
 
     const gridZone = GridZones.getGridZone(zone, band);
     if (gridZone == null) {
-      throw new Error("Invalid MGRS: " + mgrs);
+      throw new Error(`Invalid MGRS: ${mgrs}`);
     }
 
     let mgrsValue: MGRS | undefined;
@@ -470,7 +470,7 @@ export class MGRS {
       const location = matches![4];
       if (location.length > 0) {
         const precision = location.length / 2;
-        const multiplier = Math.pow(10.0, 5 - precision);
+        const multiplier = 10.0 ** (5 - precision);
         easting = +location.substring(0, precision) * multiplier;
         northing = +location.substring(precision) * multiplier;
       }
@@ -654,7 +654,7 @@ export class MGRS {
    */
   public static precision(mgrs: string): GridType {
     if (!MGRS.mgrsPattern.test(MGRS.removeSpaces(mgrs))) {
-      throw new Error("Invalid MGRS: " + mgrs);
+      throw new Error(`Invalid MGRS: ${mgrs}`);
     }
 
     const matches = MGRS.removeSpaces(mgrs).match(MGRS.mgrsPattern);

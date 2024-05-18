@@ -39,7 +39,7 @@ export class GridZones {
         longitude,
         longitude + MGRSConstants.ZONE_WIDTH,
       );
-      this.strips.set(strip.getNumber(), strip);
+      GridZones.strips.set(strip.getNumber(), strip);
     }
 
     // Create latitude bands
@@ -52,7 +52,10 @@ export class GridZones {
       } else {
         latitude += MGRSConstants.BAND_HEIGHT;
       }
-      this.bands.set(bandLetter, new LatitudeBand(bandLetter, min, latitude));
+      GridZones.bands.set(
+        bandLetter,
+        new LatitudeBand(bandLetter, min, latitude),
+      );
     }
 
     // Create grid zones
@@ -65,17 +68,17 @@ export class GridZones {
 
         let gridZoneStrip = strip;
 
-        if (this.isSvalbard(zoneNumber, bandLetter)) {
-          gridZoneStrip = this.getSvalbardStrip(strip)!;
-        } else if (this.isNorway(zoneNumber, bandLetter)) {
-          gridZoneStrip = this.getNorwayStrip(strip);
+        if (GridZones.isSvalbard(zoneNumber, bandLetter)) {
+          gridZoneStrip = GridZones.getSvalbardStrip(strip)!;
+        } else if (GridZones.isNorway(zoneNumber, bandLetter)) {
+          gridZoneStrip = GridZones.getNorwayStrip(strip);
         }
 
         if (gridZoneStrip) {
           stripGridZones.set(bandLetter, new GridZone(gridZoneStrip, band));
         }
       }
-      this.gridZones.set(zoneNumber, stripGridZones);
+      GridZones.gridZones.set(zoneNumber, stripGridZones);
     }
   }
 
@@ -88,7 +91,7 @@ export class GridZones {
    */
   public static getLongitudinalStrip(zoneNumber: number): LongitudinalStrip {
     MGRSUtils.validateZoneNumber(zoneNumber);
-    return this.strips.get(zoneNumber)!;
+    return GridZones.strips.get(zoneNumber)!;
   }
 
   /**
@@ -99,7 +102,7 @@ export class GridZones {
    * @return longitude in degrees
    */
   public static getWestLongitude(zoneNumber: number): number {
-    return this.getLongitudinalStrip(zoneNumber).getWest();
+    return GridZones.getLongitudinalStrip(zoneNumber).getWest();
   }
 
   /**
@@ -110,7 +113,7 @@ export class GridZones {
    * @return longitude in degrees
    */
   public static getEastLongitude(zoneNumber: number): number {
-    return this.getLongitudinalStrip(zoneNumber).getEast();
+    return GridZones.getLongitudinalStrip(zoneNumber).getEast();
   }
 
   /**
@@ -122,7 +125,7 @@ export class GridZones {
    */
   public static getLatitudeBand(bandLetter: string): LatitudeBand {
     MGRSUtils.validateBandLetter(bandLetter);
-    return this.bands.get(bandLetter)!;
+    return GridZones.bands.get(bandLetter)!;
   }
 
   /**
@@ -133,7 +136,7 @@ export class GridZones {
    * @return latitude in degrees
    */
   public static getSouthLatitude(bandLetter: string): number {
-    return this.getLatitudeBand(bandLetter).getSouth();
+    return GridZones.getLatitudeBand(bandLetter).getSouth();
   }
 
   /**
@@ -144,7 +147,7 @@ export class GridZones {
    * @return latitude in degrees
    */
   public static getNorthLatitude(bandLetter: string): number {
-    return this.getLatitudeBand(bandLetter).getNorth();
+    return GridZones.getLatitudeBand(bandLetter).getNorth();
   }
 
   /**
@@ -157,7 +160,7 @@ export class GridZones {
   public static getZones(bounds: Bounds): GridZone[] {
     const zones: GridZone[] = [];
 
-    const gridRange = this.getGridRange(bounds);
+    const gridRange = GridZones.getGridRange(bounds);
     for (const zone of gridRange) {
       zones.push(zone);
     }
@@ -177,7 +180,7 @@ export class GridZones {
   public static getGridZone(zoneNumber: number, bandLetter: string): GridZone {
     MGRSUtils.validateZoneNumber(zoneNumber);
     MGRSUtils.validateBandLetter(bandLetter);
-    return this.gridZones.get(zoneNumber)!.get(bandLetter)!;
+    return GridZones.gridZones.get(zoneNumber)?.get(bandLetter)!;
   }
 
   /**
@@ -188,7 +191,7 @@ export class GridZones {
    * @return grid zone
    */
   public static getGridZoneFromMGRS(mgrs: MGRS): GridZone {
-    return this.getGridZone(mgrs.getZone(), mgrs.getBand());
+    return GridZones.getGridZone(mgrs.getZone(), mgrs.getBand());
   }
 
   /**
@@ -200,8 +203,8 @@ export class GridZones {
    */
   public static getGridRange(bounds: Bounds): GridRange {
     bounds = bounds.toDegrees();
-    const zoneNumberRange = this.getZoneNumberRangeFromBounds(bounds);
-    const bandLetterRange = this.getBandLetterRangeFromBounds(bounds);
+    const zoneNumberRange = GridZones.getZoneNumberRangeFromBounds(bounds);
+    const bandLetterRange = GridZones.getBandLetterRangeFromBounds(bounds);
     return new GridRange(zoneNumberRange, bandLetterRange);
   }
 
@@ -214,7 +217,7 @@ export class GridZones {
    */
   public static getZoneNumberRangeFromBounds(bounds: Bounds): ZoneNumberRange {
     bounds = bounds.toDegrees();
-    return this.getZoneNumberRange(bounds.getWest(), bounds.getEast());
+    return GridZones.getZoneNumberRange(bounds.getWest(), bounds.getEast());
   }
 
   /**
@@ -230,8 +233,8 @@ export class GridZones {
     west: number,
     east: number,
   ): ZoneNumberRange {
-    const westZone = this.getZoneNumberFromLongitude(west, false);
-    const eastZone = this.getZoneNumberFromLongitude(east, true);
+    const westZone = GridZones.getZoneNumberFromLongitude(west, false);
+    const eastZone = GridZones.getZoneNumberFromLongitude(east, true);
     return new ZoneNumberRange(westZone, eastZone);
   }
 
@@ -244,7 +247,7 @@ export class GridZones {
    */
   public static getZoneNumberFromPoint(point: Point): number {
     point = point.toDegrees();
-    return this.getZoneNumber(point.getLongitude(), point.getLatitude());
+    return GridZones.getZoneNumber(point.getLongitude(), point.getLatitude());
   }
 
   /**
@@ -257,15 +260,15 @@ export class GridZones {
    * @return zone number
    */
   public static getZoneNumber(longitude: number, latitude: number): number {
-    let zoneNumber = this.getZoneNumberFromLongitude(longitude);
-    const svalbardZone = this.isSvalbardZone(zoneNumber);
-    const norwayZone = this.isNorwayZone(zoneNumber);
+    let zoneNumber = GridZones.getZoneNumberFromLongitude(longitude);
+    const svalbardZone = GridZones.isSvalbardZone(zoneNumber);
+    const norwayZone = GridZones.isNorwayZone(zoneNumber);
     if (svalbardZone || norwayZone) {
-      const bandLetter = this.getBandLetterFromLatitude(latitude);
-      if (svalbardZone && this.isSvalbardLetter(bandLetter)) {
-        zoneNumber = this.getSvalbardZone(longitude);
-      } else if (norwayZone && this.isNorwayLetter(bandLetter)) {
-        zoneNumber = this.getNorwayZone(longitude);
+      const bandLetter = GridZones.getBandLetterFromLatitude(latitude);
+      if (svalbardZone && GridZones.isSvalbardLetter(bandLetter)) {
+        zoneNumber = GridZones.getSvalbardZone(longitude);
+      } else if (norwayZone && GridZones.isNorwayLetter(bandLetter)) {
+        zoneNumber = GridZones.getNorwayZone(longitude);
       }
     }
     return zoneNumber;
@@ -321,7 +324,7 @@ export class GridZones {
    */
   public static getBandLetterRangeFromBounds(bounds: Bounds): BandLetterRange {
     bounds = bounds.toDegrees();
-    return this.getBandLetterRange(bounds.getSouth(), bounds.getNorth());
+    return GridZones.getBandLetterRange(bounds.getSouth(), bounds.getNorth());
   }
 
   /**
@@ -338,8 +341,8 @@ export class GridZones {
     south: number,
     north: number,
   ): BandLetterRange {
-    const southLetter = this.getBandLetterFromLatitude(south, false);
-    const northLetter = this.getBandLetterFromLatitude(north, true);
+    const southLetter = GridZones.getBandLetterFromLatitude(south, false);
+    const northLetter = GridZones.getBandLetterFromLatitude(north, true);
     return new BandLetterRange(southLetter, northLetter);
   }
 
@@ -399,7 +402,10 @@ export class GridZones {
    * @return true if a Svalbard GZD
    */
   public static isSvalbard(zoneNumber: number, bandLetter: string): boolean {
-    return this.isSvalbardLetter(bandLetter) && this.isSvalbardZone(zoneNumber);
+    return (
+      GridZones.isSvalbardLetter(bandLetter) &&
+      GridZones.isSvalbardZone(zoneNumber)
+    );
   }
 
   /**
@@ -464,7 +470,7 @@ export class GridZones {
    * @return zone number
    */
   private static getSvalbardZone(longitude: number): number {
-    const minimumLongitude = this.getWestLongitude(
+    const minimumLongitude = GridZones.getWestLongitude(
       MGRSConstants.MIN_SVALBARD_ZONE_NUMBER,
     );
     const zoneValue =
@@ -487,7 +493,9 @@ export class GridZones {
    * @return true if a Norway GZD
    */
   private static isNorway(zoneNumber: number, bandLetter: string): boolean {
-    return this.isNorwayLetter(bandLetter) && this.isNorwayZone(zoneNumber);
+    return (
+      GridZones.isNorwayLetter(bandLetter) && GridZones.isNorwayZone(zoneNumber)
+    );
   }
 
   /**
@@ -547,7 +555,7 @@ export class GridZones {
    * @return zone number
    */
   private static getNorwayZone(longitude: number): number {
-    const minimumLongitude = this.getWestLongitude(
+    const minimumLongitude = GridZones.getWestLongitude(
       MGRSConstants.MIN_NORWAY_ZONE_NUMBER,
     );
     let zone = MGRSConstants.MIN_NORWAY_ZONE_NUMBER;

@@ -112,11 +112,19 @@ export class GridLine extends Line {
    * {@inheritDoc}
    */
   public equals(obj: any): boolean {
-    if (this === obj) return true;
-    if (!super.equals(obj)) return false;
-    if (typeof this !== typeof obj) return false;
+    if (this === obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (typeof this !== typeof obj) {
+      return false;
+    }
     const other = obj as GridLine;
-    if (this.gridType !== other.gridType) return false;
+    if (this.gridType !== other.gridType) {
+      return false;
+    }
     return true;
   }
 }

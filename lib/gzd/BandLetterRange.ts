@@ -100,12 +100,11 @@ export class BandLetterRange implements IterableIterator<string> {
         done: false,
         value: currentLetter,
       };
-    } else {
-      return {
-        done: true,
-        value: null,
-      };
     }
+    return {
+      done: true,
+      value: null,
+    };
   }
 
   public reset(): void {

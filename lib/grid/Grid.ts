@@ -127,10 +127,7 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
 
     if (gridType < this.getPrecision()) {
       throw new Error(
-        "Grid can not define a style for a higher precision grid type. Type: " +
-          this.type +
-          ", Style Type: " +
-          gridType,
+        `Grid can not define a style for a higher precision grid type. Type: ${this.type}, Style Type: ${gridType}`,
       );
     }
     if (gridType === this.type) {
@@ -363,11 +360,19 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
    * {@inheritDoc}
    */
   public equals(obj: any): boolean {
-    if (this === obj) return true;
-    if (!obj) return false;
-    if (typeof this !== typeof obj) return false;
+    if (this === obj) {
+      return true;
+    }
+    if (!obj) {
+      return false;
+    }
+    if (typeof this !== typeof obj) {
+      return false;
+    }
     const other = obj as Grid;
-    if (this.type !== other.type) return false;
+    if (this.type !== other.type) {
+      return false;
+    }
     return true;
   }
 

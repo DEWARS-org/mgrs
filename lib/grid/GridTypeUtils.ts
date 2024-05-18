@@ -23,8 +23,7 @@ export class GridTypeUtils {
   public static withAccuracy(accuracy: number): GridType {
     if (accuracy < 0 || accuracy > 5) {
       throw new Error(
-        "Grid Type accuracy digits must be >= 0 and <= 5. accuracy digits: " +
-          accuracy,
+        `Grid Type accuracy digits must be >= 0 and <= 5. accuracy digits: ${accuracy}`,
       );
     }
     return GridTypeUtils.values()[accuracy + 1];

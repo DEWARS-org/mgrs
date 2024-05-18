@@ -476,7 +476,7 @@ export class UTM {
         180) /
       Math.PI;
     latitude = Math.round(latitude * 10000000);
-    latitude = latitude / 10000000;
+    latitude /= 10000000;
 
     let longitude =
       (Math.atan(
@@ -630,7 +630,7 @@ export class UTM {
    * @return true if UTM string is valid, false otherwise
    */
   public static isUTM(utm: string): boolean {
-    return this.utmPattern.test(utm);
+    return UTM.utmPattern.test(utm);
   }
 
   /**

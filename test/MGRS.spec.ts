@@ -622,7 +622,7 @@ function testCoordinateByPoint(
  * @return MGRS in accuracy
  */
 function accuracyValue(value: string, accuracy: number): string {
-  const gzdLength = value.length % 2 == 1 ? 3 : 2;
+  const gzdLength = value.length % 2 === 1 ? 3 : 2;
   let accuracyValue = value.substring(0, gzdLength);
 
   if (accuracy >= 0) {

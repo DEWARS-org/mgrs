@@ -207,11 +207,11 @@ export class GridRange implements IterableIterator<GridZone> {
         done: false,
         value: result,
       };
-    } else
-      return {
-        done: true,
-        value: null,
-      };
+    }
+    return {
+      done: true,
+      value: null,
+    };
   }
 
   public reset(): void {

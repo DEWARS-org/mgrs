@@ -7,7 +7,7 @@ describe("ZoneNumberRange Tests", () => {
     const range = new ZoneNumberRange();
 
     let count = 0;
-    for (const zoneNumber of range) {
+    for (const _ of range) {
       count++;
     }
     expect(count).to.equal(MGRSConstants.MAX_ZONE_NUMBER);

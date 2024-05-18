@@ -17,12 +17,7 @@ export class MGRSUtils {
       zoneNumber > MGRSConstants.MAX_ZONE_NUMBER
     ) {
       throw new Error(
-        "Illegal zone number (expected " +
-          MGRSConstants.MIN_ZONE_NUMBER +
-          " - " +
-          MGRSConstants.MAX_ZONE_NUMBER +
-          "): " +
-          zoneNumber,
+        `Illegal zone number (expected ${MGRSConstants.MIN_ZONE_NUMBER} - ${MGRSConstants.MAX_ZONE_NUMBER}): ${zoneNumber}`,
       );
     }
   }
@@ -39,7 +34,7 @@ export class MGRSUtils {
       letter.charCodeAt(0) > MGRSConstants.MAX_BAND_LETTER.charCodeAt(0) ||
       GridUtils.isOmittedBandLetter(letter)
     ) {
-      throw new Error("Illegal band letter (CDEFGHJKLMNPQRSTUVWX): " + letter);
+      throw new Error(`Illegal band letter (CDEFGHJKLMNPQRSTUVWX): ${letter}`);
     }
   }
 

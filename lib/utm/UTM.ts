@@ -649,6 +649,10 @@ export class UTM {
 
     const matches = utm.match(UTM.utmPattern);
 
+    if (!matches) {
+      throw new Error(`Invalid UTM input: ${utm}`);
+    }
+
     const zone = Number.parseInt(matches[1], 10);
     const hemisphere =
       matches[2].localeCompare(GridConstants.NORTH_CHAR, undefined, {

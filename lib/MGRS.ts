@@ -448,6 +448,10 @@ export class MGRS {
 
     const matches = MGRS.removeSpaces(mgrs).match(MGRS.mgrsPattern);
 
+    if (!matches) {
+      throw new Error(`Invalid MGRS input: ${mgrs}`);
+    }
+
     const zone = Number.parseInt(matches[1], 10);
     const band = matches[2].toUpperCase().charAt(0);
 
@@ -575,6 +579,10 @@ export class MGRS {
 
     const intersection = line.intersection(boundsLine);
 
+    if (!intersection) {
+      throw new Error(`Invalid MGRS bounds intersection: ${west} to ${east}`);
+    }
+
     // Intersection easting
     const intersectionUtm = UTM.from(intersection, zoneNumber, hemisphere);
     const intersectionEasting = intersectionUtm.getEasting();
@@ -623,6 +631,10 @@ export class MGRS {
 
     const intersection = line.intersection(boundsLine);
 
+    if (!intersection) {
+      throw new Error(`Invalid MGRS bounds intersection: ${south} to ${north}`);
+    }
+
     // Intersection northing
     const intersectionUtm = UTM.from(intersection, zoneNumber, hemisphere);
     const intersectionNorthing = intersectionUtm.getNorthing();
@@ -661,7 +673,7 @@ export class MGRS {
 
     let precision: GridType | undefined;
 
-    if (matches[3]) {
+    if (matches?.[3]) {
       const location = matches[4];
       if (location.length > 0) {
         precision = GridTypeUtils.withAccuracy(location.length / 2);

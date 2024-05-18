@@ -263,8 +263,12 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    *            grid type
    * @return grid
    */
-  public getGrid(type: GridType): Grid | undefined {
-    return this.gridMap.get(type);
+  public getGrid(type: GridType): Grid {
+    const grid = this.gridMap.get(type);
+    if (!grid) {
+      throw new Error(`Grid not found for type: ${type}`);
+    }
+    return grid;
   }
 
   /**
@@ -733,7 +737,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    * @return label buffer (greater than or equal to 0.0 and less than 0.5)
    */
   public getLabelBuffer(type: GridType): number {
-    return this.getGrid(type)!.getLabelBuffer();
+    return this.getGrid(type).getLabelBuffer();
   }
 
   /**

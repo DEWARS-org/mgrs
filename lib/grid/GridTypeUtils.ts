@@ -70,7 +70,7 @@ export class GridTypeUtils {
 
     let ordinal = 0;
     for (let i = 0; i < types.length; i++) {
-      if (isNaN(Number(types[i]))) {
+      if (Number.isNaN(Number(types[i]))) {
         if (types[i] === GridType[type]) {
           break;
         }

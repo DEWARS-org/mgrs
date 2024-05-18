@@ -69,7 +69,7 @@ export class GridZones {
         let gridZoneStrip = strip;
 
         if (GridZones.isSvalbard(zoneNumber, bandLetter)) {
-          gridZoneStrip = GridZones.getSvalbardStrip(strip)!;
+          gridZoneStrip = GridZones.getSvalbardStrip(strip);
         } else if (GridZones.isNorway(zoneNumber, bandLetter)) {
           gridZoneStrip = GridZones.getNorwayStrip(strip);
         }
@@ -91,7 +91,7 @@ export class GridZones {
    */
   public static getLongitudinalStrip(zoneNumber: number): LongitudinalStrip {
     MGRSUtils.validateZoneNumber(zoneNumber);
-    return GridZones.strips.get(zoneNumber)!;
+    return GridZones.strips.get(zoneNumber);
   }
 
   /**
@@ -125,7 +125,7 @@ export class GridZones {
    */
   public static getLatitudeBand(bandLetter: string): LatitudeBand {
     MGRSUtils.validateBandLetter(bandLetter);
-    return GridZones.bands.get(bandLetter)!;
+    return GridZones.bands.get(bandLetter);
   }
 
   /**
@@ -180,7 +180,7 @@ export class GridZones {
   public static getGridZone(zoneNumber: number, bandLetter: string): GridZone {
     MGRSUtils.validateZoneNumber(zoneNumber);
     MGRSUtils.validateBandLetter(bandLetter);
-    return GridZones.gridZones.get(zoneNumber)?.get(bandLetter)!;
+    return GridZones.gridZones.get(zoneNumber)?.get(bandLetter);
   }
 
   /**
@@ -389,7 +389,7 @@ export class GridZones {
     if (letter) {
       letter += bands;
     }
-    return String.fromCharCode(letter!);
+    return String.fromCharCode(letter);
   }
 
   /**

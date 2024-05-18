@@ -66,7 +66,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    * {@inheritDoc}
    */
   public getDefaultWidth(): number {
-    return Grid.DEFAULT_WIDTH!;
+    return Grid.DEFAULT_WIDTH;
   }
 
   /**
@@ -354,7 +354,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    * @return true if enabled
    */
   public isEnabled(type: GridType): boolean {
-    return this.getGrid(type)!.isEnabled();
+    return this.getGrid(type).isEnabled();
   }
 
   /**
@@ -364,7 +364,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    *            grid type
    */
   public enableByType(type: GridType): void {
-    this.enable(this.getGrid(type)!);
+    this.enable(this.getGrid(type));
   }
 
   /**
@@ -374,7 +374,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    *            grid type
    */
   public disableByType(type: GridType): void {
-    this.disable(this.getGrid(type)!);
+    this.disable(this.getGrid(type));
   }
 
   /**
@@ -386,7 +386,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    *            minimum zoom
    */
   public setMinZoomByType(type: GridType, minZoom: number): void {
-    super.setMinZoom(this.getGrid(type)!, minZoom);
+    super.setMinZoom(this.getGrid(type), minZoom);
   }
 
   /**
@@ -398,7 +398,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    *            maximum zoom
    */
   public setMaxZoomByType(type: GridType, maxZoom: number): void {
-    super.setMaxZoom(this.getGrid(type)!, maxZoom);
+    super.setMaxZoom(this.getGrid(type), maxZoom);
   }
 
   /**
@@ -416,7 +416,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
     minZoom: number,
     maxZoom: number,
   ): void {
-    super.setZoomRange(this.getGrid(type)!, minZoom, maxZoom);
+    super.setZoomRange(this.getGrid(type), minZoom, maxZoom);
   }
 
   /**
@@ -428,7 +428,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    *            minimum zoom level or null to remove
    */
   public setLinesMinZoom(type: GridType, minZoom: number): void {
-    this.getGrid(type)!.setLinesMinZoom(minZoom);
+    this.getGrid(type).setLinesMinZoom(minZoom);
   }
 
   /**
@@ -440,7 +440,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    *            maximum zoom level or null to remove
    */
   public setLinesMaxZoom(type: GridType, maxZoom?: number): void {
-    this.getGrid(type)!.setLinesMaxZoom(maxZoom);
+    this.getGrid(type).setLinesMaxZoom(maxZoom);
   }
 
   /**
@@ -473,8 +473,8 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
     if (!types) {
       types = GridTypeUtils.values();
     }
-    for (const type of types!) {
-      this.getGrid(type)!.clearPrecisionStyles();
+    for (const type of types) {
+      this.getGrid(type).clearPrecisionStyles();
     }
   }
 
@@ -496,12 +496,12 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
     if (precisionTypes) {
       for (const precisionType of precisionTypes) {
         for (const type of types) {
-          this.getGrid(type)!.setColor(color, precisionType);
+          this.getGrid(type).setColor(color, precisionType);
         }
       }
     } else {
       for (const type of types) {
-        this.getGrid(type)!.setColor(color);
+        this.getGrid(type).setColor(color);
       }
     }
   }
@@ -524,12 +524,12 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
     if (precisionTypes) {
       for (const precisionType of precisionTypes) {
         for (const type of types) {
-          this.getGrid(type)!.setWidth(width, precisionType);
+          this.getGrid(type).setWidth(width, precisionType);
         }
       }
     } else {
       for (const type of types) {
-        this.getGrid(type)!.setWidth(width);
+        this.getGrid(type).setWidth(width);
       }
     }
   }
@@ -542,7 +542,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    * @return labeler or null
    */
   public getLabeler(type: GridType): GridLabeler {
-    return this.getGrid(type)!.getLabeler();
+    return this.getGrid(type).getLabeler();
   }
 
   /**
@@ -553,7 +553,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    * @return true if has labeler
    */
   public hasLabeler(type: GridType): boolean {
-    return this.getGrid(type)!.hasLabeler();
+    return this.getGrid(type).hasLabeler();
   }
 
   /**
@@ -565,7 +565,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    *            labeler
    */
   public setLabeler(type: GridType, labeler: GridLabeler): void {
-    this.getGrid(type)!.setLabeler(labeler);
+    this.getGrid(type).setLabeler(labeler);
   }
 
   /**
@@ -644,7 +644,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
   private getRequiredLabeler(type: GridType): GridLabeler {
     const labeler = this.getLabeler(type);
     if (!labeler) {
-      throw new Error("Grid type does not have a labeler: " + type);
+      throw new Error(`Grid type does not have a labeler: ${type}`);
     }
     return labeler;
   }
@@ -704,11 +704,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
     const labeler = this.getRequiredLabeler(type);
     if (maxZoom !== null && maxZoom !== undefined && maxZoom < minZoom) {
       throw new Error(
-        "Min zoom '" +
-          minZoom +
-          "' can not be larger than max zoom '" +
-          maxZoom +
-          "'",
+        `Min zoom '${minZoom}' can not be larger than max zoom '${maxZoom}'`,
       );
     }
     labeler.setMinZoom(minZoom);

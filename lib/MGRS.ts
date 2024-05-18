@@ -448,8 +448,8 @@ export class MGRS {
 
     const matches = MGRS.removeSpaces(mgrs).match(MGRS.mgrsPattern);
 
-    const zone = Number.parseInt(matches![1], 10);
-    const band = matches![2].toUpperCase().charAt(0);
+    const zone = Number.parseInt(matches[1], 10);
+    const band = matches[2].toUpperCase().charAt(0);
 
     const gridZone = GridZones.getGridZone(zone, band);
     if (gridZone == null) {
@@ -458,7 +458,7 @@ export class MGRS {
 
     let mgrsValue: MGRS | undefined;
 
-    let columnRow = matches![3];
+    let columnRow = matches[3];
     if (columnRow) {
       columnRow = columnRow.toUpperCase();
       const column = columnRow.charAt(0);
@@ -467,7 +467,7 @@ export class MGRS {
       // parse easting & northing
       let easting = 0;
       let northing = 0;
-      const location = matches![4];
+      const location = matches[4];
       if (location.length > 0) {
         const precision = location.length / 2;
         const multiplier = 10.0 ** (5 - precision);
@@ -576,7 +576,7 @@ export class MGRS {
     const intersection = line.intersection(boundsLine);
 
     // Intersection easting
-    const intersectionUtm = UTM.from(intersection!, zoneNumber, hemisphere);
+    const intersectionUtm = UTM.from(intersection, zoneNumber, hemisphere);
     const intersectionEasting = intersectionUtm.getEasting();
 
     // One meter precision just inside the bounds
@@ -624,7 +624,7 @@ export class MGRS {
     const intersection = line.intersection(boundsLine);
 
     // Intersection northing
-    const intersectionUtm = UTM.from(intersection!, zoneNumber, hemisphere);
+    const intersectionUtm = UTM.from(intersection, zoneNumber, hemisphere);
     const intersectionNorthing = intersectionUtm.getNorthing();
 
     // One meter precision just inside the bounds
@@ -661,8 +661,8 @@ export class MGRS {
 
     let precision: GridType | undefined;
 
-    if (matches![3]) {
-      const location = matches![4];
+    if (matches[3]) {
+      const location = matches[4];
       if (location.length > 0) {
         precision = GridTypeUtils.withAccuracy(location.length / 2);
       } else {

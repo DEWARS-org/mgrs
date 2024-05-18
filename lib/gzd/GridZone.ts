@@ -118,7 +118,7 @@ export class GridZone {
    */
   public isWithin(bounds: Bounds): boolean {
     if (this.bounds.getUnit()) {
-      bounds = bounds.toUnit(this.bounds.getUnit()!);
+      bounds = bounds.toUnit(this.bounds.getUnit());
     }
     return (
       this.bounds.getSouth() <= bounds.getNorth() &&

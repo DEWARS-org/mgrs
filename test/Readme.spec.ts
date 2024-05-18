@@ -69,7 +69,7 @@ function testDrawTile(tile: GridTile): void {
 
   const zoomGrids = grids.getGrids(tile.getZoom());
   if (zoomGrids?.hasGrids()) {
-    const gridRange = GridZones.getGridRange(tile.getBounds()!);
+    const gridRange = GridZones.getGridRange(tile.getBounds());
 
     for (const grid of zoomGrids) {
       // draw this grid for each zone

@@ -649,15 +649,15 @@ export class UTM {
 
     const matches = utm.match(UTM.utmPattern);
 
-    const zone = Number.parseInt(matches![1], 10);
+    const zone = Number.parseInt(matches[1], 10);
     const hemisphere =
-      matches![2].localeCompare(GridConstants.NORTH_CHAR, undefined, {
+      matches[2].localeCompare(GridConstants.NORTH_CHAR, undefined, {
         sensitivity: "base",
       }) === 0
         ? Hemisphere.NORTH
         : Hemisphere.SOUTH;
-    const easting = +matches![3];
-    const northing = +matches![4];
+    const easting = +matches[3];
+    const northing = +matches[4];
 
     return UTM.create(zone, hemisphere, easting, northing);
   }

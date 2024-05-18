@@ -87,7 +87,7 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
       if (gridType === this.type) {
         style = super.getStyle();
       } else {
-        style = this.styles.get(gridType)!;
+        style = this.styles.get(gridType);
       }
     } else {
       style = super.getStyle();
@@ -109,7 +109,7 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
       style = new GridStyle(undefined, 0);
       this.setStyle(style, gridType);
     }
-    return style!;
+    return style;
   }
 
   /**

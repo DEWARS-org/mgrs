@@ -1,3 +1,4 @@
+import { test } from "@japa/runner";
 import { GridTile, Point } from "@ngageoint/grid-js";
 import { MGRS } from "../lib/MGRS.js";
 import { GridType } from "../lib/grid/GridType.js";
@@ -10,12 +11,12 @@ import { UTM } from "../lib/utm/UTM.js";
  *
  *
  */
-describe("Readme Tests", () => {
+test.group("Readme Tests", () => {
   /**
    * Test MGRS coordinates
    *
    */
-  it("test coordinates", () => {
+  test("test coordinates", ({ expect }) => {
     const mgrs = MGRS.parse("33XVG74594359");
     const point = mgrs.toPoint();
     const pointMeters = point.toMeters();
@@ -51,7 +52,7 @@ describe("Readme Tests", () => {
    * @param tile
    *            grid tile
    */
-  it("test draw tile", () => {
+  test("test draw tile", ({ expect }) => {
     testDrawTile(GridTile.tile(512, 512, 8, 12, 5));
   });
 });
@@ -69,7 +70,11 @@ function testDrawTile(tile: GridTile): void {
 
   const zoomGrids = grids.getGrids(tile.getZoom());
   if (zoomGrids?.hasGrids()) {
-    const gridRange = GridZones.getGridRange(tile.getBounds());
+    const bounds = tile.getBounds();
+    if (!bounds) {
+      throw new Error("Bounds not found");
+    }
+    const gridRange = GridZones.getGridRange(bounds);
 
     for (const grid of zoomGrids) {
       // draw this grid for each zone

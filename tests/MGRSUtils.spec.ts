@@ -1,52 +1,52 @@
+import { test } from "@japa/runner";
 import { Hemisphere } from "@ngageoint/grid-js";
-import { expect } from "chai";
 import { MGRSConstants } from "../lib/MGRSConstants.js";
 import { MGRSUtils } from "../lib/MGRSUtils.js";
 
-describe("MGRSUtils Tests", () => {
-  it("test validate zone number", () => {
+test.group("MGRSUtils Tests", () => {
+  test("test validate zone number", ({ expect }) => {
     expect(() => {
       MGRSUtils.validateZoneNumber(MGRSConstants.MIN_ZONE_NUMBER - 1);
-    }).to.throw(Error);
+    }).toThrow(Error);
     expect(() => {
       MGRSUtils.validateZoneNumber(MGRSConstants.MAX_ZONE_NUMBER + 1);
-    }).to.throw(Error);
+    }).toThrow(Error);
   });
 
-  it("test validate band letter", () => {
+  test("test validate band letter", ({ expect }) => {
     expect(() => {
       let min = MGRSConstants.MIN_BAND_LETTER.charCodeAt(0);
       min--;
       MGRSUtils.validateBandLetter(String.fromCharCode(min));
-    }).to.throw(Error);
+    }).toThrow(Error);
     expect(() => {
       let max = MGRSConstants.MAX_BAND_LETTER.charCodeAt(0);
       max++;
       MGRSUtils.validateBandLetter(String.fromCharCode(max));
-    }).to.throw(Error);
+    }).toThrow(Error);
   });
 
-  it("test next band letter", () => {
+  test("test next band letter", ({ expect }) => {
     const nextBandLetter = MGRSUtils.nextBandLetter(
       MGRSConstants.MIN_BAND_LETTER,
     );
-    expect(nextBandLetter.charCodeAt(0)).is.greaterThan(
+    expect(nextBandLetter.charCodeAt(0)).toBeGreaterThan(
       MGRSConstants.MIN_BAND_LETTER.charCodeAt(0),
     );
   });
 
-  it("test previous band letter", () => {
+  test("test previous band letter", ({ expect }) => {
     const prevBandLetter = MGRSUtils.previousBandLetter(
       MGRSConstants.MAX_BAND_LETTER,
     );
-    expect(prevBandLetter.charCodeAt(0)).is.lessThan(
+    expect(prevBandLetter.charCodeAt(0)).toBeLessThan(
       MGRSConstants.MAX_BAND_LETTER.charCodeAt(0),
     );
   });
 
-  it("test hemisphere", () => {
+  test("test hemisphere", ({ expect }) => {
     expect(
       MGRSUtils.getHemisphere(MGRSConstants.BAND_LETTER_NORTH).valueOf(),
-    ).to.equal(Hemisphere.NORTH.valueOf());
+    ).toEqual(Hemisphere.NORTH.valueOf());
   });
 });

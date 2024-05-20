@@ -1,20 +1,20 @@
-import { expect } from "chai";
+import { test } from "@japa/runner";
 import { GridType } from "../../lib/grid/GridType.js";
 import { Grids } from "../../lib/grid/Grids.js";
 
-describe("Grids Tests", () => {
-  it("test construction", () => {
+test.group("Grids Tests", () => {
+  test("test construction", ({ expect }) => {
     const defaultGrids = new Grids();
     for (const grid of defaultGrids.grids()) {
-      expect(grid.isEnabled()).to.equal(true);
+      expect(grid.isEnabled()).toEqual(true);
     }
 
     const enabledGrids = new Grids([GridType.KILOMETER]);
     for (const grid of enabledGrids.grids()) {
       if (grid.getType().valueOf() === GridType.KILOMETER.valueOf()) {
-        expect(grid.isEnabled()).to.equal(true);
+        expect(grid.isEnabled()).toEqual(true);
       } else {
-        expect(grid.isEnabled()).to.equal(false);
+        expect(grid.isEnabled()).toEqual(false);
       }
     }
   });

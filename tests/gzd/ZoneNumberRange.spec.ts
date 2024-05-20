@@ -1,15 +1,15 @@
-import { expect } from "chai";
+import { test } from "@japa/runner";
 import { MGRSConstants } from "../../lib/MGRSConstants.js";
 import { ZoneNumberRange } from "../../lib/gzd/ZoneNumberRange.js";
 
-describe("ZoneNumberRange Tests", () => {
-  it("test iterator", () => {
+test.group("ZoneNumberRange Tests", () => {
+  test("test iterator", ({ expect }) => {
     const range = new ZoneNumberRange();
 
     let count = 0;
     for (const _ of range) {
       count++;
     }
-    expect(count).to.equal(MGRSConstants.MAX_ZONE_NUMBER);
+    expect(count).toEqual(MGRSConstants.MAX_ZONE_NUMBER);
   });
 });

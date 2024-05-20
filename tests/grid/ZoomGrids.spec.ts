@@ -1,18 +1,18 @@
-import { expect } from "chai";
+import { test } from "@japa/runner";
 import { Grid } from "../../lib/grid/Grid.js";
 import { GridType } from "../../lib/grid/GridType.js";
 import { ZoomGrids } from "../../lib/grid/ZoomGrids.js";
 
-describe("ZoomGrids Tests", () => {
-  it("test precision", () => {
+test.group("ZoomGrids Tests", () => {
+  test("test precision", ({ expect }) => {
     const zoomGrids = new ZoomGrids(5);
-    expect(zoomGrids.getPrecision()).to.be.undefined;
+    expect(zoomGrids.getPrecision()).toBeUndefined;
 
     zoomGrids.addGrid(new Grid(GridType.HUNDRED_KILOMETER));
     zoomGrids.addGrid(new Grid(GridType.TEN_KILOMETER));
     zoomGrids.addGrid(new Grid(GridType.METER));
 
-    expect(zoomGrids.getPrecision()?.valueOf()).to.equal(
+    expect(zoomGrids.getPrecision()?.valueOf()).toEqual(
       GridType.METER.valueOf(),
     );
   });

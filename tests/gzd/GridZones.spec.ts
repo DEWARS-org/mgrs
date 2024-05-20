@@ -1,15 +1,15 @@
-import { expect } from "chai";
+import { test } from "@japa/runner";
 import { MGRSConstants } from "../../lib/MGRSConstants.js";
 import { MGRSUtils } from "../../lib/MGRSUtils.js";
 import { GridZones } from "../../lib/gzd/GridZones.js";
 
 const BAND_LETTERS = "CDEFGHJKLMNPQRSTUVWXX";
 
-describe("GridZones Tests", () => {
+test.group("GridZones Tests", () => {
   /**
    * Test zone numbers
    */
-  it("test zone numbers", () => {
+  test("test zone numbers", ({ expect }) => {
     let zoneNumber = MGRSConstants.MIN_ZONE_NUMBER;
     for (
       let longitude = MGRSConstants.MIN_LON;
@@ -23,16 +23,16 @@ describe("GridZones Tests", () => {
       const east = zoneNumber;
 
       if (longitude < MGRSConstants.MAX_LON) {
-        expect(~~Math.floor(longitude / 6 + 31)).to.equal(east);
+        expect(~~Math.floor(longitude / 6 + 31)).toEqual(east);
       }
 
-      expect(GridZones.getZoneNumberFromLongitude(longitude, false)).to.equal(
+      expect(GridZones.getZoneNumberFromLongitude(longitude, false)).toEqual(
         west,
       );
-      expect(GridZones.getZoneNumberFromLongitude(longitude, true)).to.equal(
+      expect(GridZones.getZoneNumberFromLongitude(longitude, true)).toEqual(
         east,
       );
-      expect(GridZones.getZoneNumberFromLongitude(longitude)).to.equal(east);
+      expect(GridZones.getZoneNumberFromLongitude(longitude)).toEqual(east);
 
       if (zoneNumber < MGRSConstants.MAX_ZONE_NUMBER) {
         zoneNumber++;
@@ -43,7 +43,7 @@ describe("GridZones Tests", () => {
   /**
    * Test band letters
    */
-  it("test band letters", () => {
+  test("test band letters", ({ expect }) => {
     let bandLetter = MGRSConstants.MIN_BAND_LETTER;
     for (
       let latitude = MGRSConstants.MIN_LAT;
@@ -56,17 +56,17 @@ describe("GridZones Tests", () => {
           : bandLetter;
       const north = bandLetter;
 
-      expect(BAND_LETTERS.charAt(~~Math.floor(latitude / 8 + 10))).to.equal(
+      expect(BAND_LETTERS.charAt(~~Math.floor(latitude / 8 + 10))).toEqual(
         north,
       );
 
-      expect(GridZones.getBandLetterFromLatitude(latitude, false)).to.equal(
+      expect(GridZones.getBandLetterFromLatitude(latitude, false)).toEqual(
         south,
       );
-      expect(GridZones.getBandLetterFromLatitude(latitude, true)).to.equal(
+      expect(GridZones.getBandLetterFromLatitude(latitude, true)).toEqual(
         north,
       );
-      expect(GridZones.getBandLetterFromLatitude(latitude)).to.equal(north);
+      expect(GridZones.getBandLetterFromLatitude(latitude)).toEqual(north);
 
       if (bandLetter < MGRSConstants.MAX_BAND_LETTER) {
         bandLetter = MGRSUtils.nextBandLetter(bandLetter);

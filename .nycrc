@@ -1,0 +1,7 @@
+{
+  "temp-dir": "./.test_run",
+  "report-dir": "./docs/coverage",
+  "reporter": [
+    "lcov"
+  ]
+}

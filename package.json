@@ -1,9 +1,19 @@
 {
   "name": "@ngageoint/mgrs-js",
   "version": "1.1.0",
-  "displayName": "MGRS Javascript",
   "description": "MGRS Javascript",
   "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "NGA",
     "MGRS"
@@ -26,8 +36,6 @@
     "npm": ">= 6.x"
   },
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "dependencies": {
     "@biomejs/biome": "^1.7.3",
     "@ngageoint/color-js": "^2.1.0",
@@ -50,26 +58,9 @@
   "scripts": {
     "gh-pages-build": "npm install && npm run typedoc --options typedoc.json",
     "typedoc": "rm -rf ./docs/api; typedoc --tsconfig tsconfig.json --out docs/api index.ts",
-    "clean": "rm -rf ./.test_run; rm -rf ./.nyc_output; rm -rf ./docs/coverage; rm -rf ./dist; npm run clean-test; rm -rf docs/api",
-    "clean-test": "rm -rf ./test/bundle ./test/node_modules ./test/tmp",
-    "test:run": "mocha --config .mocharc.js",
     "test": "tsx bin/test.ts",
     "build": "tsc",
     "report": "nyc report",
-    "coverage": "nyc npm run test:run"
-  },
-  "files": [
-    "dist",
-    "resources"
-  ],
-  "directories": {
-    "lib": "./lib"
-  },
-  "nyc": {
-    "temp-dir": "./.test_run",
-    "report-dir": "./docs/coverage",
-    "reporter": [
-      "lcov"
-    ]
+    "coverage": "nyc pnpm test"
   }
 }

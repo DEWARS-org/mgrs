@@ -150,9 +150,10 @@ export class GridRange implements IterableIterator<GridZone> {
               expandZone--
             ) {
               if (expandZone > this.maxZoneNumber) {
-                this.additional.push(
-                  GridZones.getGridZone(expandZone, this.bandLetter),
-                );
+                const gz = GridZones.getGridZone(expandZone, this.bandLetter);
+                if (gz) {
+                  this.additional.push(gz);
+                }
               } else {
                 break;
               }
@@ -164,9 +165,10 @@ export class GridRange implements IterableIterator<GridZone> {
               expandZone++
             ) {
               if (expandZone < this.minZoneNumber) {
-                this.additional.push(
-                  GridZones.getGridZone(expandZone, this.bandLetter),
-                );
+                const gz = GridZones.getGridZone(expandZone, this.bandLetter);
+                if (gz) {
+                  this.additional.push(gz);
+                }
               } else {
                 break;
               }
@@ -176,16 +178,24 @@ export class GridRange implements IterableIterator<GridZone> {
       } else {
         // Retrieve the western grid if on the left edge
         if (this.zoneNumber === this.minZoneNumber) {
-          this.additional.push(
-            GridZones.getGridZone(this.zoneNumber - 1, this.bandLetter),
+          const gz = GridZones.getGridZone(
+            this.zoneNumber - 1,
+            this.bandLetter,
           );
+          if (gz) {
+            this.additional.push(gz);
+          }
         }
 
         // Expand to the eastern grid if on the right edge
         if (this.zoneNumber === this.maxZoneNumber) {
-          this.additional.push(
-            GridZones.getGridZone(this.zoneNumber + 1, this.bandLetter),
+          const gz = GridZones.getGridZone(
+            this.zoneNumber + 1,
+            this.bandLetter,
           );
+          if (gz) {
+            this.additional.push(gz);
+          }
         }
       }
 

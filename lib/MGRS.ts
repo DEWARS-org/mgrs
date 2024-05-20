@@ -296,7 +296,7 @@ export class MGRS {
    *
    * @return GZD grid zone
    */
-  public getGridZone(): GridZone {
+  public getGridZone(): GridZone | undefined {
     return GridZones.getGridZoneFromMGRS(this);
   }
 

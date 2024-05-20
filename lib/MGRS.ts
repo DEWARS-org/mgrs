@@ -1,6 +1,5 @@
 import type { Hemisphere } from "@ngageoint/grid-js";
 import { Line, Point } from "@ngageoint/grid-js";
-import * as sprintf from "sprintf-js";
 import { MGRSUtils } from "./MGRSUtils.js";
 import { GridType } from "./grid/GridType.js";
 import { GridTypeUtils } from "./grid/GridTypeUtils.js";
@@ -233,8 +232,8 @@ export class MGRS {
     const accuracy = 5 - ~~Math.log10(type);
 
     // TODO apply locale
-    const easting = sprintf.sprintf("%05d", this.easting);
-    const northing = sprintf.sprintf("%05d", this.northing);
+    const easting = this.easting.toString().padStart(5, "0");
+    const northing = this.northing.toString().padStart(5, "0");
 
     return easting.substring(0, accuracy) + northing.substring(0, accuracy);
   }

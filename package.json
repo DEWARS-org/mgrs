@@ -11,14 +11,8 @@
       "types": "./dist/lib/index.d.ts"
     }
   },
-  "files": [
-    "dist/lib",
-    "dist/resources"
-  ],
-  "keywords": [
-    "NGA",
-    "MGRS"
-  ],
+  "files": ["dist/lib", "dist/resources"],
+  "keywords": ["NGA", "MGRS"],
   "repository": {
     "type": "git",
     "url": "https://github.com/ngageoint/mgrs-js.git"

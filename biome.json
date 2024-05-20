@@ -20,7 +20,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "all": true
+      "all": true,
+      "complexity": {
+        "noStaticOnlyClass": "off"
+      }
     }
   }
 }

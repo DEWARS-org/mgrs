@@ -118,7 +118,11 @@ export class GridZone {
    */
   public isWithin(bounds: Bounds): boolean {
     if (this.bounds.getUnit()) {
-      bounds = bounds.toUnit(this.bounds.getUnit());
+      const tempUnit = this.bounds.getUnit();
+      if (!tempUnit) {
+        throw new Error("Bounds unit is null");
+      }
+      bounds = bounds.toUnit(tempUnit);
     }
     return (
       this.bounds.getSouth() <= bounds.getNorth() &&

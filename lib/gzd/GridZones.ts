@@ -69,7 +69,11 @@ export class GridZones {
         let gridZoneStrip = strip;
 
         if (GridZones.isSvalbard(zoneNumber, bandLetter)) {
-          gridZoneStrip = GridZones.getSvalbardStrip(strip);
+          const tempGzs = GridZones.getSvalbardStrip(strip);
+          if (!tempGzs) {
+            continue;
+          }
+          gridZoneStrip = tempGzs;
         } else if (GridZones.isNorway(zoneNumber, bandLetter)) {
           gridZoneStrip = GridZones.getNorwayStrip(strip);
         }
@@ -91,7 +95,11 @@ export class GridZones {
    */
   public static getLongitudinalStrip(zoneNumber: number): LongitudinalStrip {
     MGRSUtils.validateZoneNumber(zoneNumber);
-    return GridZones.strips.get(zoneNumber);
+    const tempStrip = GridZones.strips.get(zoneNumber);
+    if (!tempStrip) {
+      throw new Error("Strip is null");
+    }
+    return tempStrip;
   }
 
   /**
@@ -125,7 +133,11 @@ export class GridZones {
    */
   public static getLatitudeBand(bandLetter: string): LatitudeBand {
     MGRSUtils.validateBandLetter(bandLetter);
-    return GridZones.bands.get(bandLetter);
+    const tempBand = GridZones.bands.get(bandLetter);
+    if (!tempBand) {
+      throw new Error("Band is null");
+    }
+    return tempBand;
   }
 
   /**
@@ -177,7 +189,10 @@ export class GridZones {
    *            band letter
    * @return grid zone
    */
-  public static getGridZone(zoneNumber: number, bandLetter: string): GridZone {
+  public static getGridZone(
+    zoneNumber: number,
+    bandLetter: string,
+  ): GridZone | undefined {
     MGRSUtils.validateZoneNumber(zoneNumber);
     MGRSUtils.validateBandLetter(bandLetter);
     return GridZones.gridZones.get(zoneNumber)?.get(bandLetter);
@@ -190,7 +205,7 @@ export class GridZones {
    *            mgrs coordinate
    * @return grid zone
    */
-  public static getGridZoneFromMGRS(mgrs: MGRS): GridZone {
+  public static getGridZoneFromMGRS(mgrs: MGRS): GridZone | undefined {
     return GridZones.getGridZone(mgrs.getZone(), mgrs.getBand());
   }
 
@@ -388,6 +403,10 @@ export class GridZones {
     let letter = MGRSConstants.MIN_BAND_LETTER.codePointAt(0);
     if (letter) {
       letter += bands;
+    }
+
+    if (typeof letter !== "number") {
+      throw new Error("Letter is not a number");
     }
     return String.fromCharCode(letter);
   }

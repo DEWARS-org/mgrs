@@ -38,6 +38,9 @@ export abstract class GridLabeler extends Labeler {
     textSize = GridLabeler.DEFAULT_TEXT_SIZE,
     buffer = GridLabeler.DEFAULT_BUFFER,
   ) {
+    if (!textSize || !buffer) {
+      throw new Error("Text size and buffer must be defined");
+    }
     super(enabled, minZoom, maxZoom, color, textSize, buffer);
   }
 

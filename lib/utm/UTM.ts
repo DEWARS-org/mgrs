@@ -4,7 +4,7 @@ import {
   HemisphereUtils,
   Point,
 } from "@ngageoint/grid-js";
-import DecimalFormat from "decimal-format";
+import { DecimalFormat } from "@sachaw/decimal-format";
 import * as sprintf from "sprintf-js";
 import { MGRS } from "../MGRS.js";
 import { GridZones } from "../gzd/GridZones.js";

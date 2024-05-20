@@ -87,7 +87,13 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
       if (gridType === this.type) {
         style = super.getStyle();
       } else {
-        style = this.styles.get(gridType);
+        const tempStyle = this.styles.get(gridType);
+        if (!tempStyle) {
+          throw new Error(
+            `Grid does not contain a style for the grid type: ${gridType}`,
+          );
+        }
+        style = tempStyle;
       }
     } else {
       style = super.getStyle();

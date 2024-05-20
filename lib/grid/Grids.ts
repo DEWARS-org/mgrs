@@ -66,7 +66,11 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    * {@inheritDoc}
    */
   public getDefaultWidth(): number {
-    return Grid.DEFAULT_WIDTH;
+    const dw = Grid.DEFAULT_WIDTH;
+    if (!dw) {
+      throw new Error("Default width must be defined");
+    }
+    return dw;
   }
 
   /**
@@ -612,7 +616,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    */
   public isLabelerEnabled(type: GridType): boolean {
     const labeler = this.getLabeler(type);
-    return labeler !== null && labeler.isEnabled();
+    return labeler?.isEnabled();
   }
 
   /**

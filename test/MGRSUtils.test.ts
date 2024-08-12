@@ -1,5 +1,5 @@
 import { expect } from "@std/expect";
-import { Hemisphere } from "@ngageoint/grid-js/Hemisphere";
+import { Hemisphere } from "@dewars/grid";
 import { MGRSConstants } from "../lib/MGRSConstants.ts";
 import { MGRSUtils } from "../lib/MGRSUtils.ts";
 

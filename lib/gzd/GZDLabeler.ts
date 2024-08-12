@@ -1,4 +1,4 @@
-import type { Color } from "@ngageoint/color-js";
+import type { Color } from "@dewars/color";
 import { MGRS } from "../MGRS.ts";
 import { GridLabel } from "../grid/GridLabel.ts";
 import { GridLabeler } from "../grid/GridLabeler.ts";

@@ -1,5 +1,5 @@
-import type { Color } from "@ngageoint/color-js";
-import { Bounds } from "@ngageoint/grid-js/features/Bounds";
+import type { Color } from "@dewars/color";
+import { Bounds } from "@dewars/grid";
 import { MGRS } from "../MGRS.ts";
 import type { GridZone } from "../gzd/GridZone.ts";
 import { UTM } from "../utm/UTM.ts";

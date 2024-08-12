@@ -1,5 +1,5 @@
 import { expect } from "@std/expect";
-import { Hemisphere } from "@ngageoint/grid-js/Hemisphere";
+import { Hemisphere } from "@dewars/grid";
 import { UTM } from "../../lib/utm/UTM.ts";
 
 Deno.test("test to point", () => {

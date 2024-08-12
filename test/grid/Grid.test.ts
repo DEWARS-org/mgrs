@@ -1,5 +1,5 @@
 import { expect } from "@std/expect";
-import { GridStyle } from "@ngageoint/grid-js/GridStyle";
+import { GridStyle } from "@dewars/grid";
 import { Grid } from "../../lib/grid/Grid.ts";
 import { GridType } from "../../lib/grid/GridType.ts";
 

@@ -1,4 +1,4 @@
-import { BaseZoomGrids } from "@ngageoint/grid-js/BaseZoomGrids";
+import { BaseZoomGrids } from "@dewars/grid";
 import type { Grid } from "./Grid.ts";
 import type { GridType } from "./GridType.ts";
 

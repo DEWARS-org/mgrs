@@ -1,5 +1,5 @@
-import { GridUtils } from "@ngageoint/grid-js/GridUtils";
-import { Hemisphere } from "@ngageoint/grid-js/Hemisphere";
+import { GridUtils } from "@dewars/grid";
+import { Hemisphere } from "@dewars/grid";
 import { MGRSConstants } from "./MGRSConstants.ts";
 
 /**

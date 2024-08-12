@@ -1,5 +1,5 @@
-import type { Bounds } from "@ngageoint/grid-js/features/Bounds";
-import type { Point } from "@ngageoint/grid-js/features/Point";
+import type { Bounds } from "@dewars/grid";
+import type { Point } from "@dewars/grid";
 import type { MGRS } from "../MGRS.ts";
 import { MGRSConstants } from "../MGRSConstants.ts";
 import { MGRSUtils } from "../MGRSUtils.ts";

@@ -1,9 +1,9 @@
-import type { Color } from "@ngageoint/color-js";
-import { BaseGrid } from "@ngageoint/grid-js/BaseGrid";
-import { GridStyle } from "@ngageoint/grid-js/GridStyle";
-import type { Bounds } from "@ngageoint/grid-js/features/Bounds";
-import { PropertyConstants } from "@ngageoint/grid-js/property/PropertyConstants";
-import type { GridTile } from "@ngageoint/grid-js/tile/GridTile";
+import type { Color } from "@dewars/color";
+import { BaseGrid } from "@dewars/grid";
+import { GridStyle } from "@dewars/grid";
+import type { Bounds } from "@dewars/grid";
+import { PropertyConstants } from "@dewars/grid";
+import type { GridTile } from "@dewars/grid";
 import type { IComparable } from "tstl";
 import type { GridLine } from "../features/GridLine.ts";
 import type { GridZone } from "../gzd/GridZone.ts";

@@ -2,23 +2,50 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "jsr:@dewars/color@^1.0.3": "jsr:@dewars/color@1.0.3",
       "jsr:@dewars/decimal-format@^1.0.0": "jsr:@dewars/decimal-format@1.0.0",
+      "jsr:@dewars/grid@^1.0.2": "jsr:@dewars/grid@1.0.2",
+      "jsr:@dewars/simple-features@^1.0.2": "jsr:@dewars/simple-features@1.0.2",
+      "jsr:@dewars/timsort@^1.0.3": "jsr:@dewars/timsort@1.0.3",
       "jsr:@std/assert@^1.0.1": "jsr:@std/assert@1.0.2",
+      "jsr:@std/data-structures@^0.224.1": "jsr:@std/data-structures@0.224.1",
       "jsr:@std/expect@^1.0.0": "jsr:@std/expect@1.0.0",
       "jsr:@std/internal@^1.0.1": "jsr:@std/internal@1.0.1",
-      "npm:@ngageoint/color-js@^2.1.0": "npm:@ngageoint/color-js@2.1.0",
-      "npm:@ngageoint/grid-js@^2.1.0": "npm:@ngageoint/grid-js@2.1.0",
       "npm:tstl@^3.0.0": "npm:tstl@3.0.0"
     },
     "jsr": {
+      "@dewars/color@1.0.3": {
+        "integrity": "5ffeac52c788f9c086861b5830a0f7e7a811a299aeef8a5e56cd3801a4998dd9"
+      },
       "@dewars/decimal-format@1.0.0": {
         "integrity": "4259782d1e8333dd69b0191733dcb2e7436de28644047a9ee5f90e22c1017c24"
+      },
+      "@dewars/grid@1.0.2": {
+        "integrity": "8ce5611497976a7986acc7748c159d29e26c3081d338bbe09df20b6a84cc0408",
+        "dependencies": [
+          "jsr:@dewars/color@^1.0.3",
+          "jsr:@dewars/simple-features@^1.0.2",
+          "npm:tstl@^3.0.0"
+        ]
+      },
+      "@dewars/simple-features@1.0.2": {
+        "integrity": "99e3e37139957b4239e7226c876a6b73289e3f2740e4ef06bc75b6775a5c40c2",
+        "dependencies": [
+          "jsr:@dewars/timsort@^1.0.3",
+          "jsr:@std/data-structures@^0.224.1"
+        ]
+      },
+      "@dewars/timsort@1.0.3": {
+        "integrity": "aa3b15bca050611c2ba50bb1cd5db6e1de8e96c8033c0df6467c1a32ffe4e4fe"
       },
       "@std/assert@1.0.2": {
         "integrity": "ccacec332958126deaceb5c63ff8b4eaf9f5ed0eac9feccf124110435e59e49c",
         "dependencies": [
           "jsr:@std/internal@^1.0.1"
         ]
+      },
+      "@std/data-structures@0.224.1": {
+        "integrity": "266365f90014e5c52bccf1eadd65f7782a2af2c84e4052ef8316698a3572cac3"
       },
       "@std/expect@1.0.0": {
         "integrity": "030275683c23d6708878c5439a3ffd99285948d708e00835fd38fcef9a0bb921",
@@ -32,47 +59,6 @@
       }
     },
     "npm": {
-      "@ngageoint/color-js@2.1.0": {
-        "integrity": "sha512-jiiZRtEgwIpMUEUVcef7kWGLd7yOSvHKHzxbGOV9YAXulYTnl9LPiq7uY6wO95iJ8NSVoanWTnRrDJ49NF+g5A==",
-        "dependencies": {}
-      },
-      "@ngageoint/grid-js@2.1.0": {
-        "integrity": "sha512-PKgkFPgRLU+qXCkfCU/jSZzyI0FlIOjKwTQTEDYR4pXGWXtSmYdor7xUQ/Cq5K/J/4UFJfd55BG7YGguAy9VhA==",
-        "dependencies": {
-          "@ngageoint/color-js": "@ngageoint/color-js@2.1.0",
-          "@ngageoint/simple-features-js": "@ngageoint/simple-features-js@1.1.0",
-          "@types/lodash": "@types/lodash@4.17.4",
-          "lodash": "lodash@4.17.21",
-          "tstl": "tstl@2.5.16"
-        }
-      },
-      "@ngageoint/simple-features-js@1.1.0": {
-        "integrity": "sha512-QhJvGiEvPiR5Mk+dUQNsxJF+A77mFfdiOU1CU95q0oHdaEuixrJrrPwJZeG2pSICRNlc36P65Hp26zjzgt7v5Q==",
-        "dependencies": {
-          "js_cols": "js_cols@1.0.1",
-          "timsort": "timsort@0.3.0"
-        }
-      },
-      "@types/lodash@4.17.4": {
-        "integrity": "sha512-wYCP26ZLxaT3R39kiN2+HcJ4kTd3U1waI/cY7ivWYqFP6pW3ZNpvi6Wd6PHZx7T/t8z0vlkXMg3QYLa7DZ/IJQ==",
-        "dependencies": {}
-      },
-      "js_cols@1.0.1": {
-        "integrity": "sha512-VJuDOf7txQznLQSlJ7p90Cawz5A1+T4MsOYF01V1WqK7TJOnHvvC8Oz8qtc7KDfDyfP05jP5ua7VOpUm/S6s+g==",
-        "dependencies": {}
-      },
-      "lodash@4.17.21": {
-        "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==",
-        "dependencies": {}
-      },
-      "timsort@0.3.0": {
-        "integrity": "sha512-qsdtZH+vMoCARQtyod4imc2nIJwg9Cc7lPRrw9CzF8ZKR0khdr8+2nX80PBhET3tcyTtJDxAffGh2rXH4tyU8A==",
-        "dependencies": {}
-      },
-      "tstl@2.5.16": {
-        "integrity": "sha512-+O2ybLVLKcBwKm4HymCEwZIT0PpwS3gCYnxfSDEjJEKADvIFruaQjd3m7CAKNU1c7N3X3WjVz87re7TA2A5FUw==",
-        "dependencies": {}
-      },
       "tstl@3.0.0": {
         "integrity": "sha512-pR83y6/tbJx6jeGRqGJXk2t/eCUynaHEE6zsOLB0Zga8ej61LXtPfoeiROdhezpoCT15+1QMbqKB1Um5kasSKg==",
         "dependencies": {}
@@ -82,10 +68,10 @@
   "remote": {},
   "workspace": {
     "dependencies": [
+      "jsr:@dewars/color@^1.0.3",
       "jsr:@dewars/decimal-format@^1.0.0",
+      "jsr:@dewars/grid@^1.0.2",
       "jsr:@std/expect@^1.0.0",
-      "npm:@ngageoint/color-js@^2.1.0",
-      "npm:@ngageoint/grid-js@^2.1.0",
       "npm:tstl@^3.0.0"
     ]
   }

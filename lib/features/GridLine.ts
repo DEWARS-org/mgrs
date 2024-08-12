@@ -1,6 +1,7 @@
-import { Line } from "@ngageoint/grid-js/features/Line";
-import type { Point } from "@ngageoint/grid-js/features/Point";
+import { Line } from "@dewars/grid";
+import type { Point } from "@dewars/grid";
 import type { GridType } from "../grid/GridType.ts";
+import { GeometryType } from "jsr:@dewars/simple-features@^1.0.2";
 
 /**
  * Line between two points
@@ -65,7 +66,7 @@ export class GridLine extends Line {
    *            line to copy
    */
   constructor(line: Line) {
-    super(line);
+    super(line as unknown as GeometryType);
   }
 
   /**

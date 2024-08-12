@@ -1,6 +1,6 @@
-import type { Hemisphere } from "@ngageoint/grid-js/Hemisphere";
-import { Line } from "@ngageoint/grid-js/features/Line";
-import { Point } from "@ngageoint/grid-js/features/Point";
+import type { Hemisphere } from "@dewars/grid";
+import { Line } from "@dewars/grid";
+import { Point } from "@dewars/grid";
 import { MGRSUtils } from "./MGRSUtils.ts";
 import { GridType } from "./grid/GridType.ts";
 import { GridTypeUtils } from "./grid/GridTypeUtils.ts";

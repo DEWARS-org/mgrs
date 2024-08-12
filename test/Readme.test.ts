@@ -1,6 +1,6 @@
 import { expect } from "@std/expect";
-import { Point } from "@ngageoint/grid-js/features/Point";
-import { GridTile } from "@ngageoint/grid-js/tile/GridTile";
+import { Point } from "@dewars/grid";
+import { GridTile } from "@dewars/grid";
 import { MGRS } from "../lib/MGRS.ts";
 import { GridType } from "../lib/grid/GridType.ts";
 import { Grids } from "../lib/grid/Grids.ts";

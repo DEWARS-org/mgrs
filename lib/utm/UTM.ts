@@ -1,7 +1,7 @@
-import { GridConstants } from "@ngageoint/grid-js/GridConstants";
-import { Hemisphere } from "@ngageoint/grid-js/Hemisphere";
-import { HemisphereUtils } from "@ngageoint/grid-js/HemisphereUtils";
-import { Point } from "@ngageoint/grid-js/features/Point";
+import { GridConstants } from "@dewars/grid";
+import { Hemisphere } from "@dewars/grid";
+import { HemisphereUtils } from "@dewars/grid";
+import { Point } from "@dewars/grid";
 import { DecimalFormat } from "@dewars/decimal-format";
 import { MGRS } from "../MGRS.ts";
 import { GridZones } from "../gzd/GridZones.ts";

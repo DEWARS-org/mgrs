@@ -1,7 +1,7 @@
-import { Color } from "@ngageoint/color-js";
-import { Labeler } from "@ngageoint/grid-js/Labeler";
-import type { Bounds } from "@ngageoint/grid-js/features/Bounds";
-import { PropertyConstants } from "@ngageoint/grid-js/property/PropertyConstants";
+import { Color } from "@dewars/color";
+import { Labeler } from "@dewars/grid";
+import type { Bounds } from "@dewars/grid";
+import { PropertyConstants } from "@dewars/grid";
 import type { GridZone } from "../gzd/GridZone.ts";
 import { MGRSProperties } from "../property/MGRSProperties.ts";
 import type { GridLabel } from "./GridLabel.ts";

@@ -1,7 +1,7 @@
-import type { Color } from "@ngageoint/color-js";
-import { BaseGrids } from "@ngageoint/grid-js/BaseGrids";
-import { GridStyle } from "@ngageoint/grid-js/GridStyle";
-import { PropertyConstants } from "@ngageoint/grid-js/property/PropertyConstants";
+import type { Color } from "@dewars/color";
+import { BaseGrids } from "@dewars/grid";
+import { GridStyle } from "@dewars/grid";
+import { PropertyConstants } from "@dewars/grid";
 import { GZDLabeler } from "../gzd/GZDLabeler.ts";
 import { MGRSProperties } from "../property/MGRSProperties.ts";
 import { Grid } from "./Grid.ts";

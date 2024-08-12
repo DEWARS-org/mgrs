@@ -1,4 +1,4 @@
-import { Bounds } from "@ngageoint/grid-js/features/Bounds";
+import { Bounds } from "@dewars/grid";
 import { MGRSUtils } from "../MGRSUtils.ts";
 import { BandLetterRange } from "./BandLetterRange.ts";
 import type { GridZone } from "./GridZone.ts";

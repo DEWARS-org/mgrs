@@ -1,4 +1,4 @@
-import { GridConstants } from "@ngageoint/grid-js/GridConstants";
+import { GridConstants } from "@dewars/grid";
 
 /**
  * Military Grid Reference System Constants

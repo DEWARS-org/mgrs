@@ -1,9 +1,20 @@
 {
+  "name": "@dewars/mgrs-js",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./mod.ts"
+  },
   "imports": {
+    "@dewars/color": "jsr:@dewars/color@^1.0.3",
     "@dewars/decimal-format": "jsr:@dewars/decimal-format@^1.0.0",
-    "@ngageoint/color-js": "npm:@ngageoint/color-js@^2.1.0",
-    "@ngageoint/grid-js": "npm:@ngageoint/grid-js@^2.1.0",
+    "@dewars/grid": "jsr:@dewars/grid@^1.0.2",
     "@std/expect": "jsr:@std/expect@^1.0.0",
     "tstl": "npm:tstl@^3.0.0"
+  },
+  "publish": {
+    "exclude": [
+      ".github",
+      "test"
+    ]
   }
 }

@@ -1,4 +1,4 @@
-import type { Hemisphere } from "@ngageoint/grid-js/Hemisphere";
+import type { Hemisphere } from "@dewars/grid";
 import { MGRSUtils } from "../MGRSUtils.ts";
 
 /**

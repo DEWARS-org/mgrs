@@ -1,4 +1,4 @@
-import { GridProperties } from "@ngageoint/grid-js/property/GridProperties";
+import { GridProperties } from "@dewars/grid";
 import config from "../../resources/mgrs.json" with { type: "json" };
 
 /**

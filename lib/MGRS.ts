@@ -87,14 +87,10 @@ export class MGRS {
     column?: string,
     row?: string,
   ): MGRS {
-    if (!column) {
-      column = MGRS.getColumnLetter(zone, easting);
-    }
-    if (!row) {
-      row = MGRS.getRowLetter(zone, northing);
-    }
+    const columnLetter = column || MGRS.getColumnLetter(zone, easting);
+    const rowLetter = row || MGRS.getRowLetter(zone, northing);
 
-    return new MGRS(zone, band, column, row, easting, northing);
+    return new MGRS(zone, band, columnLetter, rowLetter, easting, northing);
   }
 
   /**
@@ -385,8 +381,9 @@ export class MGRS {
    * @return true if MGRS string is valid, false otherwise
    */
   public static isMGRS(mgrs: string): boolean {
-    mgrs = MGRS.removeSpaces(mgrs);
-    return MGRS.mgrsPattern.test(mgrs) && !MGRS.mgrsInvalidPattern.test(mgrs);
+    const formatted = MGRS.removeSpaces(mgrs);
+    return MGRS.mgrsPattern.test(formatted) &&
+      !MGRS.mgrsInvalidPattern.test(formatted);
   }
 
   /**
@@ -408,11 +405,13 @@ export class MGRS {
    * @return MGRS
    */
   public static from(point: Point): MGRS {
-    point = point.toDegrees();
+    const pointDegrees = point.toDegrees();
 
-    const utm = UTM.from(point);
+    const utm = UTM.from(pointDegrees);
 
-    const bandLetter = GridZones.getBandLetterFromLatitude(point.getLatitude());
+    const bandLetter = GridZones.getBandLetterFromLatitude(
+      pointDegrees.getLatitude(),
+    );
 
     const columnLetter = MGRS.getColumnLetterFromUTM(utm);
 

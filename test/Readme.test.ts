@@ -1,4 +1,3 @@
-import { expect } from "@std/expect";
 import { Point } from "@dewars/grid";
 import { GridTile } from "@dewars/grid";
 import { MGRS } from "../lib/MGRS.ts";

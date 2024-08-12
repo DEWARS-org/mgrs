@@ -1,7 +1,7 @@
 import { Line } from "@dewars/grid";
 import type { Point } from "@dewars/grid";
+import type { GeometryType } from "@dewars/simple-features";
 import type { GridType } from "../grid/GridType.ts";
-import { GeometryType } from "jsr:@dewars/simple-features@^1.0.2";
 
 /**
  * Line between two points

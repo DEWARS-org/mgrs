@@ -1,6 +1,6 @@
 {
   "name": "@dewars/mgrs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "exports": {
     ".": "./mod.ts"
   },
@@ -8,6 +8,7 @@
     "@dewars/color": "jsr:@dewars/color@^1.0.3",
     "@dewars/decimal-format": "jsr:@dewars/decimal-format@^1.0.0",
     "@dewars/grid": "jsr:@dewars/grid@^1.0.2",
+    "@dewars/simple-features": "jsr:@dewars/simple-features@^1.0.2",
     "@std/expect": "jsr:@std/expect@^1.0.0",
     "tstl": "npm:tstl@^3.0.0"
   },

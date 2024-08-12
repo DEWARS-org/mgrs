@@ -71,6 +71,7 @@
       "jsr:@dewars/color@^1.0.3",
       "jsr:@dewars/decimal-format@^1.0.0",
       "jsr:@dewars/grid@^1.0.2",
+      "jsr:@dewars/simple-features@^1.0.2",
       "jsr:@std/expect@^1.0.0",
       "npm:tstl@^3.0.0"
     ]

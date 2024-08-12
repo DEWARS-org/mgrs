@@ -1,14 +1,17 @@
 import type { Color } from "@ngageoint/color-js";
-import type { Bounds, GridTile } from "@ngageoint/grid-js";
-import { BaseGrid, GridStyle, PropertyConstants } from "@ngageoint/grid-js";
+import { BaseGrid } from "@ngageoint/grid-js/BaseGrid";
+import { GridStyle } from "@ngageoint/grid-js/GridStyle";
+import type { Bounds } from "@ngageoint/grid-js/features/Bounds";
+import { PropertyConstants } from "@ngageoint/grid-js/property/PropertyConstants";
+import type { GridTile } from "@ngageoint/grid-js/tile/GridTile";
 import type { IComparable } from "tstl";
-import type { GridLine } from "../features/GridLine.js";
-import type { GridZone } from "../gzd/GridZone.js";
-import { MGRSProperties } from "../property/MGRSProperties.js";
-import type { GridLabel } from "./GridLabel.js";
-import type { GridLabeler } from "./GridLabeler.js";
-import { GridType } from "./GridType.js";
-import { GridTypeUtils } from "./GridTypeUtils.js";
+import type { GridLine } from "../features/GridLine.ts";
+import type { GridZone } from "../gzd/GridZone.ts";
+import { MGRSProperties } from "../property/MGRSProperties.ts";
+import type { GridLabel } from "./GridLabel.ts";
+import type { GridLabeler } from "./GridLabeler.ts";
+import { GridType } from "./GridType.ts";
+import { GridTypeUtils } from "./GridTypeUtils.ts";
 
 /**
  * Grid
@@ -17,8 +20,8 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
   /**
    * Default line width
    */
-  public static readonly DEFAULT_WIDTH =
-    MGRSProperties.getInstance().getDoubleProperty(
+  public static readonly DEFAULT_WIDTH = MGRSProperties.getInstance()
+    .getDoubleProperty(
       true,
       PropertyConstants.GRID.toString(),
       PropertyConstants.WIDTH.toString(),
@@ -348,7 +351,7 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
    */
   public getPrecisionCompare(): number {
     let precision = this.getPrecision();
-    if (precision <= GridType.GZD) {
+    if (precision <= GridType.Gzd) {
       precision = Number.MAX_SAFE_INTEGER;
     }
     return precision;
@@ -357,8 +360,8 @@ export class Grid extends BaseGrid implements IComparable<Grid> {
   public hashCode(): number {
     const prime = 31;
     let result = 1;
-    result =
-      prime * result + (this.type ? GridTypeUtils.hashCode(this.type) : 0);
+    result = prime * result +
+      (this.type ? GridTypeUtils.hashCode(this.type) : 0);
     return result;
   }
 

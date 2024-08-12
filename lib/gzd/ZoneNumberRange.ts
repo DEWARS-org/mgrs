@@ -1,5 +1,5 @@
-import { MGRSConstants } from "../MGRSConstants.js";
-import { GridZones } from "./GridZones.js";
+import { MGRSConstants } from "../MGRSConstants.ts";
+import { GridZones } from "./GridZones.ts";
 
 /**
  * Zone Number Range

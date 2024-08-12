@@ -1,9 +1,9 @@
-import { Bounds } from "@ngageoint/grid-js";
-import { MGRSUtils } from "../MGRSUtils.js";
-import { BandLetterRange } from "./BandLetterRange.js";
-import type { GridZone } from "./GridZone.js";
-import { GridZones } from "./GridZones.js";
-import { ZoneNumberRange } from "./ZoneNumberRange.js";
+import { Bounds } from "@ngageoint/grid-js/features/Bounds";
+import { MGRSUtils } from "../MGRSUtils.ts";
+import { BandLetterRange } from "./BandLetterRange.ts";
+import type { GridZone } from "./GridZone.ts";
+import { GridZones } from "./GridZones.ts";
+import { ZoneNumberRange } from "./ZoneNumberRange.ts";
 
 /**
  * Grid Range

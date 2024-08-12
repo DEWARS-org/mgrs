@@ -1,9 +1,9 @@
 import type { Color } from "@ngageoint/color-js";
-import { MGRS } from "../MGRS.js";
-import { GridLabel } from "../grid/GridLabel.js";
-import { GridLabeler } from "../grid/GridLabeler.js";
-import type { GridType } from "../grid/GridType.js";
-import type { GridZone } from "./GridZone.js";
+import { MGRS } from "../MGRS.ts";
+import { GridLabel } from "../grid/GridLabel.ts";
+import { GridLabeler } from "../grid/GridLabeler.ts";
+import type { GridType } from "../grid/GridType.ts";
+import type { GridZone } from "./GridZone.ts";
 
 /**
  * Grid Zone Designator labeler

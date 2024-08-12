@@ -1,11 +1,12 @@
-import type { Hemisphere } from "@ngageoint/grid-js";
-import { Line, Point } from "@ngageoint/grid-js";
-import { MGRSUtils } from "./MGRSUtils.js";
-import { GridType } from "./grid/GridType.js";
-import { GridTypeUtils } from "./grid/GridTypeUtils.js";
-import type { GridZone } from "./gzd/GridZone.js";
-import { GridZones } from "./gzd/GridZones.js";
-import { UTM } from "./utm/UTM.js";
+import type { Hemisphere } from "@ngageoint/grid-js/Hemisphere";
+import { Line } from "@ngageoint/grid-js/features/Line";
+import { Point } from "@ngageoint/grid-js/features/Point";
+import { MGRSUtils } from "./MGRSUtils.ts";
+import { GridType } from "./grid/GridType.ts";
+import { GridTypeUtils } from "./grid/GridTypeUtils.ts";
+import type { GridZone } from "./gzd/GridZone.ts";
+import { GridZones } from "./gzd/GridZones.ts";
+import { UTM } from "./utm/UTM.ts";
 
 /**
  * Military Grid Reference System Coordinate
@@ -87,10 +88,10 @@ export class MGRS {
     row?: string,
   ): MGRS {
     if (!column) {
-      column = this.getColumnLetter(zone, easting);
+      column = MGRS.getColumnLetter(zone, easting);
     }
     if (!row) {
-      row = this.getRowLetter(zone, northing);
+      row = MGRS.getRowLetter(zone, northing);
     }
 
     return new MGRS(zone, band, column, row, easting, northing);
@@ -202,17 +203,17 @@ export class MGRS {
     let mgrs = "";
 
     if (type === null || type === undefined) {
-      type = GridType.METER;
+      type = GridType.Meter;
     }
 
     mgrs += this.zone;
     mgrs += this.band;
 
-    if (type.valueOf() !== GridType.GZD.valueOf()) {
+    if (type.valueOf() !== GridType.Gzd.valueOf()) {
       mgrs += this.column;
       mgrs += this.row;
 
-      if (type !== GridType.HUNDRED_KILOMETER) {
+      if (type !== GridType.HundredKilometer) {
         mgrs += this.getEastingAndNorthing(type);
       }
     }
@@ -373,7 +374,7 @@ export class MGRS {
    * {@inheritDoc}
    */
   public toString(): string {
-    return this.coordinate(GridType.METER);
+    return this.coordinate(GridType.Meter);
   }
 
   /**
@@ -493,8 +494,8 @@ export class MGRS {
             const northeast = MGRS.create(
               zone,
               band,
-              GridType.HUNDRED_KILOMETER,
-              GridType.HUNDRED_KILOMETER,
+              GridType.HundredKilometer,
+              GridType.HundredKilometer,
               column,
               row,
             ).toPoint();
@@ -510,7 +511,7 @@ export class MGRS {
             const east = MGRS.create(
               zone,
               band,
-              GridType.HUNDRED_KILOMETER,
+              GridType.HundredKilometer,
               northing,
               column,
               row,
@@ -528,7 +529,7 @@ export class MGRS {
               zone,
               band,
               easting,
-              GridType.HUNDRED_KILOMETER,
+              GridType.HundredKilometer,
               column,
               row,
             ).toPoint();
@@ -677,10 +678,10 @@ export class MGRS {
       if (location.length > 0) {
         precision = GridTypeUtils.withAccuracy(location.length / 2);
       } else {
-        precision = GridType.HUNDRED_KILOMETER;
+        precision = GridType.HundredKilometer;
       }
     } else {
-      precision = GridType.GZD;
+      precision = GridType.Gzd;
     }
 
     return precision;

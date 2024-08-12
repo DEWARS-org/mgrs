@@ -1,4 +1,4 @@
-import { GridType } from "./GridType.js";
+import { GridType } from "./GridType.ts";
 
 export class GridTypeUtils {
   /**
@@ -38,18 +38,18 @@ export class GridTypeUtils {
    */
   public static getPrecision(value: number): GridType {
     let precision: GridType;
-    if (value % GridType.HUNDRED_KILOMETER === 0) {
-      precision = GridType.HUNDRED_KILOMETER;
-    } else if (value % GridType.TEN_KILOMETER === 0) {
-      precision = GridType.TEN_KILOMETER;
-    } else if (value % GridType.KILOMETER === 0) {
-      precision = GridType.KILOMETER;
-    } else if (value % GridType.HUNDRED_METER === 0) {
-      precision = GridType.HUNDRED_METER;
-    } else if (value % GridType.TEN_METER === 0) {
-      precision = GridType.TEN_METER;
+    if (value % GridType.HundredKilometer === 0) {
+      precision = GridType.HundredKilometer;
+    } else if (value % GridType.TenKilometer === 0) {
+      precision = GridType.TenKilometer;
+    } else if (value % GridType.Kilometer === 0) {
+      precision = GridType.Kilometer;
+    } else if (value % GridType.HundredMeter === 0) {
+      precision = GridType.HundredMeter;
+    } else if (value % GridType.TenMeter === 0) {
+      precision = GridType.TenMeter;
     } else {
-      precision = GridType.METER;
+      precision = GridType.Meter;
     }
     return precision;
   }

@@ -5,35 +5,35 @@ export enum GridType {
   /**
    * Grid Zone Designator
    */
-  GZD = 0,
+  Gzd = 0,
 
   /**
    * Hundred Kilometer
    */
-  HUNDRED_KILOMETER = 100000,
+  HundredKilometer = 100000,
 
   /**
    * Ten Kilometer
    */
-  TEN_KILOMETER = 10000,
+  TenKilometer = 10000,
 
   /**
    * Kilometer
    */
-  KILOMETER = 1000,
+  Kilometer = 1000,
 
   /**
    * Hundred Meter
    */
-  HUNDRED_METER = 100,
+  HundredMeter = 100,
 
   /**
    * Ten Meter
    */
-  TEN_METER = 10,
+  TenMeter = 10,
 
   /**
    * Meter
    */
-  METER = 1,
+  Meter = 1,
 }

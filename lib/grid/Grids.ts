@@ -1,13 +1,15 @@
 import type { Color } from "@ngageoint/color-js";
-import { BaseGrids, GridStyle, PropertyConstants } from "@ngageoint/grid-js";
-import { GZDLabeler } from "../gzd/GZDLabeler.js";
-import { MGRSProperties } from "../property/MGRSProperties.js";
-import { Grid } from "./Grid.js";
-import type { GridLabeler } from "./GridLabeler.js";
-import { GridType } from "./GridType.js";
-import { GridTypeUtils } from "./GridTypeUtils.js";
-import { MGRSLabeler } from "./MGRSLabeler.js";
-import { ZoomGrids } from "./ZoomGrids.js";
+import { BaseGrids } from "@ngageoint/grid-js/BaseGrids";
+import { GridStyle } from "@ngageoint/grid-js/GridStyle";
+import { PropertyConstants } from "@ngageoint/grid-js/property/PropertyConstants";
+import { GZDLabeler } from "../gzd/GZDLabeler.ts";
+import { MGRSProperties } from "../property/MGRSProperties.ts";
+import { Grid } from "./Grid.ts";
+import type { GridLabeler } from "./GridLabeler.ts";
+import { GridType } from "./GridType.ts";
+import { GridTypeUtils } from "./GridTypeUtils.ts";
+import { MGRSLabeler } from "./MGRSLabeler.ts";
+import { ZoomGrids } from "./ZoomGrids.ts";
 
 /**
  * Grids
@@ -35,7 +37,7 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
    * @return grids
    */
   public static createGZD(): Grids {
-    return Grids.create([GridType.GZD]);
+    return Grids.create([GridType.Gzd]);
   }
 
   /**
@@ -121,28 +123,28 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
       styles = new Map<GridType, GridStyle>();
     }
 
-    this.createGrid(GridType.GZD, new GZDLabeler(true), styles, enabled);
+    this.createGrid(GridType.Gzd, new GZDLabeler(true), styles, enabled);
     this.createGrid(
-      GridType.HUNDRED_KILOMETER,
+      GridType.HundredKilometer,
       new MGRSLabeler(true),
       styles,
       enabled,
     );
     this.createGrid(
-      GridType.TEN_KILOMETER,
+      GridType.TenKilometer,
       new MGRSLabeler(true),
       styles,
       enabled,
     );
-    this.createGrid(GridType.KILOMETER, new MGRSLabeler(true), styles, enabled);
+    this.createGrid(GridType.Kilometer, new MGRSLabeler(true), styles, enabled);
     this.createGrid(
-      GridType.HUNDRED_METER,
+      GridType.HundredMeter,
       new MGRSLabeler(true),
       styles,
       enabled,
     );
-    this.createGrid(GridType.TEN_METER, new MGRSLabeler(true), styles, enabled);
-    this.createGrid(GridType.METER, new MGRSLabeler(true), styles, enabled);
+    this.createGrid(GridType.TenMeter, new MGRSLabeler(true), styles, enabled);
+    this.createGrid(GridType.Meter, new MGRSLabeler(true), styles, enabled);
   }
 
   /**
@@ -194,20 +196,20 @@ export class Grids extends BaseGrids<Grid, ZoomGrids> {
     styles?: Map<GridType, GridStyle>,
   ): void {
     const precision = grid.getPrecision();
-    if (precision < GridType.HUNDRED_KILOMETER) {
-      this.loadGridStyle(grid, gridKey, GridType.HUNDRED_KILOMETER, styles);
+    if (precision < GridType.HundredKilometer) {
+      this.loadGridStyle(grid, gridKey, GridType.HundredKilometer, styles);
     }
-    if (precision < GridType.TEN_KILOMETER) {
-      this.loadGridStyle(grid, gridKey, GridType.TEN_KILOMETER, styles);
+    if (precision < GridType.TenKilometer) {
+      this.loadGridStyle(grid, gridKey, GridType.TenKilometer, styles);
     }
-    if (precision < GridType.KILOMETER) {
-      this.loadGridStyle(grid, gridKey, GridType.KILOMETER, styles);
+    if (precision < GridType.Kilometer) {
+      this.loadGridStyle(grid, gridKey, GridType.Kilometer, styles);
     }
-    if (precision < GridType.HUNDRED_METER) {
-      this.loadGridStyle(grid, gridKey, GridType.HUNDRED_METER, styles);
+    if (precision < GridType.HundredMeter) {
+      this.loadGridStyle(grid, gridKey, GridType.HundredMeter, styles);
     }
-    if (precision < GridType.TEN_METER) {
-      this.loadGridStyle(grid, gridKey, GridType.TEN_METER, styles);
+    if (precision < GridType.TenMeter) {
+      this.loadGridStyle(grid, gridKey, GridType.TenMeter, styles);
     }
   }
 

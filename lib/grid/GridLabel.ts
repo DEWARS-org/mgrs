@@ -1,7 +1,8 @@
-import type { Bounds, Point } from "@ngageoint/grid-js";
-import { Label } from "@ngageoint/grid-js";
-import type { MGRS } from "../MGRS.js";
-import type { GridType } from "./GridType.js";
+import { Label } from "@ngageoint/grid-js/Label";
+import type { Bounds } from "@ngageoint/grid-js/features/Bounds";
+import type { Point } from "@ngageoint/grid-js/features/Point";
+import type { MGRS } from "../MGRS.ts";
+import type { GridType } from "./GridType.ts";
 
 /**
  * MGRS Grid Label

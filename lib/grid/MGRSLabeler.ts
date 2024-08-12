@@ -1,11 +1,11 @@
 import type { Color } from "@ngageoint/color-js";
-import { Bounds } from "@ngageoint/grid-js";
-import { MGRS } from "../MGRS.js";
-import type { GridZone } from "../gzd/GridZone.js";
-import { UTM } from "../utm/UTM.js";
-import { GridLabel } from "./GridLabel.js";
-import { GridLabeler } from "./GridLabeler.js";
-import { GridType } from "./GridType.js";
+import { Bounds } from "@ngageoint/grid-js/features/Bounds";
+import { MGRS } from "../MGRS.ts";
+import type { GridZone } from "../gzd/GridZone.ts";
+import { UTM } from "../utm/UTM.ts";
+import { GridLabel } from "./GridLabel.ts";
+import { GridLabeler } from "./GridLabeler.ts";
+import { GridType } from "./GridType.ts";
 
 /**
  * MGRS grid labeler
@@ -139,7 +139,7 @@ export class MGRSLabeler extends GridLabeler {
 
       const mgrs = MGRS.from(center);
       let id: string;
-      if (gridType === GridType.HUNDRED_KILOMETER) {
+      if (gridType === GridType.HundredKilometer) {
         id = mgrs.getColumnRowId();
       } else {
         id = mgrs.getEastingAndNorthing(gridType);

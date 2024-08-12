@@ -1,12 +1,14 @@
-import type { Hemisphere, Point } from "@ngageoint/grid-js";
-import { Bounds, Line } from "@ngageoint/grid-js";
-import { MGRSUtils } from "../MGRSUtils.js";
-import { GridLine } from "../features/GridLine.js";
-import { GridType } from "../grid/GridType.js";
-import { GridTypeUtils } from "../grid/GridTypeUtils.js";
-import { UTM } from "../utm/UTM.js";
-import type { LatitudeBand } from "./LatitudeBand.js";
-import type { LongitudinalStrip } from "./LongitudinalStrip.js";
+import type { Hemisphere } from "@ngageoint/grid-js/Hemisphere";
+import { Bounds } from "@ngageoint/grid-js/features/Bounds";
+import { Line } from "@ngageoint/grid-js/features/Line";
+import type { Point } from "@ngageoint/grid-js/features/Point";
+import { MGRSUtils } from "../MGRSUtils.ts";
+import { GridLine } from "../features/GridLine.ts";
+import { GridType } from "../grid/GridType.ts";
+import { GridTypeUtils } from "../grid/GridTypeUtils.ts";
+import { UTM } from "../utm/UTM.ts";
+import type { LatitudeBand } from "./LatitudeBand.ts";
+import type { LongitudinalStrip } from "./LongitudinalStrip.ts";
 
 /**
  * Grid Zone
@@ -168,11 +170,11 @@ export class GridZone {
   ): GridLine[] | undefined {
     let lines: GridLine[] | undefined;
 
-    if (gridType === GridType.GZD) {
+    if (gridType === GridType.Gzd) {
       // if precision is 0, draw the zone bounds
       lines = [];
       for (const line of this.bounds.getLines()) {
-        lines.push(GridLine.lineFromLine(line, GridType.GZD));
+        lines.push(GridLine.lineFromLine(line, GridType.Gzd));
       }
     } else {
       const drawBounds = this.getDrawBounds(tileBounds, gridType);
@@ -407,26 +409,22 @@ export class GridZone {
       );
 
       const precision = gridType;
-      const leftEasting =
-        Math.floor(
-          Math.min(upperLeftUtm.getEasting(), lowerLeftUtm.getEasting()) /
-            precision,
-        ) * precision;
-      const lowerNorthing =
-        Math.floor(
-          Math.min(lowerLeftUtm.getNorthing(), lowerRightUtm.getNorthing()) /
-            precision,
-        ) * precision;
-      const rightEasting =
-        Math.ceil(
-          Math.max(lowerRightUtm.getEasting(), upperRightUtm.getEasting()) /
-            precision,
-        ) * precision;
-      const upperNorthing =
-        Math.ceil(
-          Math.max(upperRightUtm.getNorthing(), upperLeftUtm.getNorthing()) /
-            precision,
-        ) * precision;
+      const leftEasting = Math.floor(
+        Math.min(upperLeftUtm.getEasting(), lowerLeftUtm.getEasting()) /
+          precision,
+      ) * precision;
+      const lowerNorthing = Math.floor(
+        Math.min(lowerLeftUtm.getNorthing(), lowerRightUtm.getNorthing()) /
+          precision,
+      ) * precision;
+      const rightEasting = Math.ceil(
+        Math.max(lowerRightUtm.getEasting(), upperRightUtm.getEasting()) /
+          precision,
+      ) * precision;
+      const upperNorthing = Math.ceil(
+        Math.max(upperRightUtm.getNorthing(), upperLeftUtm.getNorthing()) /
+          precision,
+      ) * precision;
 
       drawBounds = Bounds.meters(
         leftEasting,

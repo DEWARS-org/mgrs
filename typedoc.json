@@ -1,7 +1,0 @@
-{
-  "out": "./docs/api",
-  "tsconfig": "tsconfig.json",
-  "exclude": "test/**/*",
-  "excludePrivate": true,
-  "includeVersion": true
-}

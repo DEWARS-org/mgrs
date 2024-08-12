@@ -1,10 +1,11 @@
 import { Color } from "@ngageoint/color-js";
-import type { Bounds } from "@ngageoint/grid-js";
-import { Labeler, PropertyConstants } from "@ngageoint/grid-js";
-import type { GridZone } from "../gzd/GridZone.js";
-import { MGRSProperties } from "../property/MGRSProperties.js";
-import type { GridLabel } from "./GridLabel.js";
-import type { GridType } from "./GridType.js";
+import { Labeler } from "@ngageoint/grid-js/Labeler";
+import type { Bounds } from "@ngageoint/grid-js/features/Bounds";
+import { PropertyConstants } from "@ngageoint/grid-js/property/PropertyConstants";
+import type { GridZone } from "../gzd/GridZone.ts";
+import { MGRSProperties } from "../property/MGRSProperties.ts";
+import type { GridLabel } from "./GridLabel.ts";
+import type { GridType } from "./GridType.ts";
 
 /**
  * Grid Labeler
@@ -13,8 +14,8 @@ export abstract class GridLabeler extends Labeler {
   /**
    * Default text size
    */
-  public static readonly DEFAULT_TEXT_SIZE =
-    MGRSProperties.getInstance().getDoubleProperty(
+  public static readonly DEFAULT_TEXT_SIZE = MGRSProperties.getInstance()
+    .getDoubleProperty(
       true,
       PropertyConstants.LABELER.toString(),
       PropertyConstants.TEXT_SIZE.toString(),
@@ -23,8 +24,8 @@ export abstract class GridLabeler extends Labeler {
   /**
    * Default buffer size
    */
-  public static readonly DEFAULT_BUFFER =
-    MGRSProperties.getInstance().getDoubleProperty(
+  public static readonly DEFAULT_BUFFER = MGRSProperties.getInstance()
+    .getDoubleProperty(
       true,
       PropertyConstants.LABELER.toString(),
       PropertyConstants.BUFFER.toString(),

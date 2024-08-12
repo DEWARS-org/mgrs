@@ -1,5 +1,6 @@
-import { GridUtils, Hemisphere } from "@ngageoint/grid-js";
-import { MGRSConstants } from "./MGRSConstants.js";
+import { GridUtils } from "@ngageoint/grid-js/GridUtils";
+import { Hemisphere } from "@ngageoint/grid-js/Hemisphere";
+import { MGRSConstants } from "./MGRSConstants.ts";
 
 /**
  * Military Grid Reference System utilities
@@ -99,7 +100,7 @@ export class MGRSUtils {
    */
   public static getHemisphere(bandLetter: string): Hemisphere {
     return bandLetter < MGRSConstants.BAND_LETTER_NORTH
-      ? Hemisphere.SOUTH
-      : Hemisphere.NORTH;
+      ? Hemisphere.South
+      : Hemisphere.North;
   }
 }
